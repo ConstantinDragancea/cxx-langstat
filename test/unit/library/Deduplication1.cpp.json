@@ -1,0 +1,77 @@
+{
+    "ala": {
+        "templated func uses": {
+            "std::sort": [
+                {
+                    "Location": 9,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 9,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<double *, std::vector<double, std::allocator<double> > >"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 9,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<char *, std::vector<char, std::allocator<char> > >"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::move": [
+                {
+                    "Location": 37,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<Base *, std::vector<Base, std::allocator<Base> > >",
+                            "std::back_insert_iterator<std::vector<Base, std::allocator<Base> > >"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::swap": [
+                {
+                    "Location": 23,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        },
+        "explicit func insts": {
+            "std::swap": [
+                {
+                    "Location": 5,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "bool"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        }
+    }
+}

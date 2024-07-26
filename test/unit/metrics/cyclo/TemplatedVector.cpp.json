@@ -1,12 +1,5 @@
 {
     "cca": {
-        "fdecls": {
-            "foo": [
-                2
-            ],
-            "C::mfoo": [
-                2
-            ]
-        }
+        "fdecls": null
     }
 }

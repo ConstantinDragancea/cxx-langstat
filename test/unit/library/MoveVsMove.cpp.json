@@ -1,14 +1,29 @@
 {
     "ala": {
-        "func insts": {
+        "templated func uses": {
             "std::move": [
                 {
-                    "location": 22,
+                    "Location": 29,
                     "arguments": {
                         "non-type": [],
                         "type": [
-                            "std::__wrap_iter<int *>",
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >",
                             "std::back_insert_iterator<std::list<int, std::allocator<int> > >"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        },
+        "explicit func insts": {
+            "std::move": [
+                {
+                    "Location": 23,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >",
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >"
                         ],
                         "template": []
                     }
@@ -18,10 +33,24 @@
     },
     "msa": {
         "std::move, std::forward usage": {
-            "func insts": {
+            "templated func uses": {
                 "std::move": [
                     {
-                        "location": 24,
+                        "Location": 31,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            },
+            "explicit func insts": {
+                "std::move": [
+                    {
+                        "Location": 20,
                         "arguments": {
                             "non-type": [],
                             "type": [
@@ -33,49 +62,6 @@
                 ]
             }
         },
-        "copy or move construction": [
-            {
-                "CallExpr": {
-                    "Location": 22
-                },
-                "Parameter": {
-                    "Func Identifier": "std::move",
-                    "Func Location": 1889,
-                    "Func Type": "class std::back_insert_iterator<class std::list<int, class std::allocator<int> > > (class std::__wrap_iter<int *>, class std::__wrap_iter<int *>, class std::back_insert_iterator<class std::list<int, class std::allocator<int> > >)",
-                    "Identifier": "__first",
-                    "Parm Type": "class std::__wrap_iter<int *>",
-                    "construction kind": "move",
-                    "copy/move ctor is compiler-generated": true
-                }
-            },
-            {
-                "CallExpr": {
-                    "Location": 22
-                },
-                "Parameter": {
-                    "Func Identifier": "std::move",
-                    "Func Location": 1889,
-                    "Func Type": "class std::back_insert_iterator<class std::list<int, class std::allocator<int> > > (class std::__wrap_iter<int *>, class std::__wrap_iter<int *>, class std::back_insert_iterator<class std::list<int, class std::allocator<int> > >)",
-                    "Identifier": "__last",
-                    "Parm Type": "class std::__wrap_iter<int *>",
-                    "construction kind": "move",
-                    "copy/move ctor is compiler-generated": true
-                }
-            },
-            {
-                "CallExpr": {
-                    "Location": 22
-                },
-                "Parameter": {
-                    "Func Identifier": "std::move",
-                    "Func Location": 1889,
-                    "Func Type": "class std::back_insert_iterator<class std::list<int, class std::allocator<int> > > (class std::__wrap_iter<int *>, class std::__wrap_iter<int *>, class std::back_insert_iterator<class std::list<int, class std::allocator<int> > >)",
-                    "Identifier": "__result",
-                    "Parm Type": "class std::back_insert_iterator<class std::list<int, class std::allocator<int> > >",
-                    "construction kind": "move",
-                    "copy/move ctor is compiler-generated": true
-                }
-            }
-        ]
+        "copy or move construction": null
     }
 }

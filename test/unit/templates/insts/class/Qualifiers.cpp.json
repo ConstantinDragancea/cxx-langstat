@@ -35,7 +35,8 @@
                 }
             ]
         },
-        "func insts": null,
+        "implicit func insts": null,
+        "explicit func insts": null,
         "var insts": null
     }
 }

@@ -1,0 +1,99 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [
+            {
+                "FunctionHeader": "Dummy_default()",
+                "Kind": "Constructor",
+                "Location": 11
+            },
+            {
+                "FunctionHeader": "~Dummy_default()",
+                "Kind": "MemberFunction",
+                "Location": 12
+            },
+            {
+                "FunctionHeader": "DefaultBase()",
+                "Kind": "Constructor",
+                "Location": 16
+            },
+            {
+                "FunctionHeader": "DefaultBase(const DefaultBase &)",
+                "Kind": "CopyConstructor",
+                "Location": 17
+            },
+            {
+                "FunctionHeader": "DefaultBase(DefaultBase &&)",
+                "Kind": "MoveConstructor",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "operator=(const DefaultBase &)",
+                "Kind": "MemberFunction",
+                "Location": 19
+            },
+            {
+                "FunctionHeader": "operator!=(const DefaultBase &)",
+                "Kind": "MemberFunction",
+                "Location": 22
+            },
+            {
+                "FunctionHeader": "operator==(const DefaultBase &, const DefaultBase &)",
+                "Kind": "Function",
+                "Location": 25
+            }
+        ],
+        "explicit default": [
+            {
+                "FunctionHeader": "Dummy_default()",
+                "Kind": "Constructor",
+                "Location": 11
+            },
+            {
+                "FunctionHeader": "~Dummy_default()",
+                "Kind": "MemberFunction",
+                "Location": 12
+            },
+            {
+                "FunctionHeader": "DefaultBase()",
+                "Kind": "Constructor",
+                "Location": 16
+            },
+            {
+                "FunctionHeader": "DefaultBase(const DefaultBase &)",
+                "Kind": "CopyConstructor",
+                "Location": 17
+            },
+            {
+                "FunctionHeader": "DefaultBase(DefaultBase &&)",
+                "Kind": "MoveConstructor",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "operator=(const DefaultBase &)",
+                "Kind": "MemberFunction",
+                "Location": 19
+            },
+            {
+                "FunctionHeader": "operator!=(const DefaultBase &)",
+                "Kind": "MemberFunction",
+                "Location": 22
+            },
+            {
+                "FunctionHeader": "operator==(const DefaultBase &, const DefaultBase &)",
+                "Kind": "Function",
+                "Location": 25
+            }
+        ],
+        "delete": [],
+        "inline namespace": [],
+        "final": [],
+        "all noexcept": [],
+        "explicit noexcept": [],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [],
+        "static_assert": []
+    }
+}

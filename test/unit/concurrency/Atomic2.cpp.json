@@ -1,0 +1,124 @@
+{
+    "cta": {
+        "promise, future usage": {
+            "explicit class insts": null,
+            "templated class uses": null
+        },
+        "async usage": {
+            "templated func uses": null,
+            "explicit func insts": null
+        },
+        "atomic usage": {
+            "explicit class insts": {
+                "std::atomic": [
+                    {
+                        "Location": 33,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "ExplicitUserInst"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            },
+            "templated class uses": {
+                "std::atomic": [
+                    {
+                        "Location": 16,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "char"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 17,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 35,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "NotDetected"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 36,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "NotDetected"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 40,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 41,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 42,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "NotDetected"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 43,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "ExplicitUserInst"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            }
+        },
+        "thread usage": {
+            "as variable declarations": {},
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        },
+        "mutex usage": {
+            "as variable declarations": {},
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        }
+    }
+}

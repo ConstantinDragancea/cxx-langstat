@@ -1,13 +1,13 @@
 {
     "cla": {
         "explicit class insts": null,
-        "implicit class insts": {
+        "templated class uses": {
             "std::array": [
                 {
-                    "location": 32,
+                    "Location": 35,
                     "arguments": {
                         "non-type": [
-                            "1"
+                            "1UL"
                         ],
                         "type": [
                             "int"
@@ -16,10 +16,10 @@
                     }
                 },
                 {
-                    "location": 33,
+                    "Location": 36,
                     "arguments": {
                         "non-type": [
-                            "1"
+                            "1UL"
                         ],
                         "type": [
                             "int"
@@ -30,7 +30,7 @@
             ],
             "std::vector": [
                 {
-                    "location": 34,
+                    "Location": 37,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -41,7 +41,7 @@
                     }
                 },
                 {
-                    "location": 63,
+                    "Location": 66,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -52,7 +52,7 @@
                     }
                 },
                 {
-                    "location": 64,
+                    "Location": 67,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -65,7 +65,7 @@
             ],
             "std::forward_list": [
                 {
-                    "location": 35,
+                    "Location": 38,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -78,7 +78,7 @@
             ],
             "std::list": [
                 {
-                    "location": 36,
+                    "Location": 39,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -91,7 +91,7 @@
             ],
             "std::map": [
                 {
-                    "location": 37,
+                    "Location": 40,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -106,7 +106,7 @@
             ],
             "std::multimap": [
                 {
-                    "location": 38,
+                    "Location": 41,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -121,7 +121,7 @@
             ],
             "std::set": [
                 {
-                    "location": 39,
+                    "Location": 42,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -135,7 +135,7 @@
             ],
             "std::multiset": [
                 {
-                    "location": 40,
+                    "Location": 43,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -149,7 +149,7 @@
             ],
             "std::unordered_map": [
                 {
-                    "location": 41,
+                    "Location": 44,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -165,7 +165,7 @@
             ],
             "std::unordered_multimap": [
                 {
-                    "location": 42,
+                    "Location": 45,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -181,7 +181,7 @@
             ],
             "std::unordered_set": [
                 {
-                    "location": 43,
+                    "Location": 46,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -196,7 +196,7 @@
             ],
             "std::unordered_multiset": [
                 {
-                    "location": 44,
+                    "Location": 47,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -211,7 +211,7 @@
             ],
             "std::queue": [
                 {
-                    "location": 45,
+                    "Location": 48,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -224,7 +224,7 @@
             ],
             "std::priority_queue": [
                 {
-                    "location": 46,
+                    "Location": 49,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -238,7 +238,7 @@
             ],
             "std::stack": [
                 {
-                    "location": 47,
+                    "Location": 50,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -251,7 +251,7 @@
             ],
             "std::deque": [
                 {
-                    "location": 48,
+                    "Location": 51,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -266,10 +266,10 @@
     },
     "ula": {
         "explicit class insts": null,
-        "implicit class insts": {
+        "templated class uses": {
             "std::pair": [
                 {
-                    "location": 51,
+                    "Location": 54,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -280,7 +280,7 @@
                     }
                 },
                 {
-                    "location": 52,
+                    "Location": 55,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -293,7 +293,7 @@
             ],
             "std::tuple": [
                 {
-                    "location": 53,
+                    "Location": 56,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -305,7 +305,7 @@
                     }
                 },
                 {
-                    "location": 54,
+                    "Location": 57,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -318,7 +318,7 @@
             ],
             "std::unique_ptr": [
                 {
-                    "location": 57,
+                    "Location": 60,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -329,7 +329,7 @@
                     }
                 },
                 {
-                    "location": 66,
+                    "Location": 69,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -342,7 +342,7 @@
             ],
             "std::shared_ptr": [
                 {
-                    "location": 58,
+                    "Location": 61,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -354,7 +354,7 @@
             ],
             "std::weak_ptr": [
                 {
-                    "location": 59,
+                    "Location": 62,
                     "arguments": {
                         "non-type": [],
                         "type": [

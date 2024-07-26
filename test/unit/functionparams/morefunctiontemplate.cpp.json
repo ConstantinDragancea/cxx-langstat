@@ -202,7 +202,7 @@
                 "Identifier": "arru",
                 "Kind": 3,
                 "Location": 42,
-                "Type": "array<type-parameter-1-0, 0> &&",
+                "Type": "std::array<type-parameter-1-0, 0> &&",
                 "isInstantiationDependent": true
             },
             {

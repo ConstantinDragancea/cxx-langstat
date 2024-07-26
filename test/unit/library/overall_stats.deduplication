@@ -1,0 +1,23 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/library/Deduplication1.ast.json": {
+        "algorithm type prevalence": {
+            "std::move": 1,
+            "std::sort": 3,
+            "std::swap": 2
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/library/Deduplication2.ast.json": {
+        "algorithm type prevalence": {
+            "std::move": 1,
+            "std::sort": 3,
+            "std::swap": 2
+        }
+    }
+}
+{
+    "algorithm type prevalence": {
+        "std::move": 1,
+        "std::sort": 3,
+        "std::swap": 3
+    }
+}

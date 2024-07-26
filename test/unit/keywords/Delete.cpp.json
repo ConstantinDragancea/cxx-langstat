@@ -1,0 +1,33 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [],
+        "explicit default": [],
+        "delete": [
+            {
+                "FunctionHeader": "operator new(std::size_t)",
+                "Kind": "MemberFunction",
+                "Location": 11
+            },
+            {
+                "FunctionHeader": "operator new[](std::size_t)",
+                "Kind": "MemberFunction",
+                "Location": 12
+            },
+            {
+                "FunctionHeader": "deleted_function(int)",
+                "Kind": "Function",
+                "Location": 15
+            }
+        ],
+        "inline namespace": [],
+        "final": [],
+        "all noexcept": [],
+        "explicit noexcept": [],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [],
+        "static_assert": []
+    }
+}

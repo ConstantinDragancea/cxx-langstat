@@ -1,0 +1,49 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [
+            {
+                "FunctionHeader": "operator=(const Dummy &)",
+                "Kind": "MemberFunction",
+                "Location": 7
+            },
+            {
+                "FunctionHeader": "operator=(Dummy &&)",
+                "Kind": "MemberFunction",
+                "Location": 7
+            },
+            {
+                "FunctionHeader": "~Dummy()",
+                "Kind": "MemberFunction",
+                "Location": 7
+            }
+        ],
+        "explicit default": [],
+        "delete": [],
+        "inline namespace": [],
+        "final": [],
+        "all noexcept": [
+            {
+                "FunctionHeader": "operator=(const Dummy &)",
+                "Kind": "Specifier",
+                "Location": 7
+            },
+            {
+                "FunctionHeader": "operator=(Dummy &&)",
+                "Kind": "Specifier",
+                "Location": 7
+            },
+            {
+                "FunctionHeader": "~Dummy()",
+                "Kind": "Specifier",
+                "Location": 7
+            }
+        ],
+        "explicit noexcept": [],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [],
+        "static_assert": []
+    }
+}

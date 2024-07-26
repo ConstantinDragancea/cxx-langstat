@@ -15,4 +15,8 @@ template<typename T>
 void f2(){
     f1<T>(); // reported
 }
-template void f2<int>(); // not reported, as it is explicit
+template void f2<int>(); // not reported, as it is only a declaration, it's never actually used.
+
+void func(){
+    f2<double>();
+}

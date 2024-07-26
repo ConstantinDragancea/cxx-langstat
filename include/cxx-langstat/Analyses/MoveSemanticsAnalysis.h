@@ -1,6 +1,11 @@
 #ifndef MOVESEMANTICSANALYSIS_H
 #define MOVESEMANTICSANALYSIS_H
 
+#include <string_view>
+#include <utility>
+#include <iostream>
+#include <array>
+
 #include "cxx-langstat/Analyses/TemplateInstantiationAnalysis.h"
 #include "cxx-langstat/Utils.h"
 
@@ -8,12 +13,23 @@ namespace msa {
 
 // Enum of the parmVarDecl of a functionDecl was constructed from the argument
 // of a callExpr. Also, maps for prettier printing.
-enum class ConstructKind { Copy, Move, Unknown };
-const std::array<std::string, 3> S = {"copy", "move", "unknown"};
-const std::map<ConstructKind, std::string> toString = {{ConstructKind::Copy, S[0]},
-    {ConstructKind::Move, S[1]}, {ConstructKind::Unknown, S[2]}};
-const std::map<std::string, ConstructKind> fromString = {{S[0], ConstructKind::Copy},
-    {S[1], ConstructKind::Move}, {S[2], ConstructKind::Unknown}};
+enum class ConstructKind { 
+    Copy,
+    Move,
+    Unknown // it might be elided, might not be elided. depends on the compiler
+};
+constexpr std::array<std::string_view, 3> S = {"copy", "move", "unknown"};
+const std::unordered_map<ConstructKind, std::string_view> toString = {
+    {ConstructKind::Copy, S[0]},
+    {ConstructKind::Move, S[1]},
+    {ConstructKind::Unknown, S[2]}
+};
+const std::unordered_map<std::string_view, ConstructKind> fromString = {
+    {S[0], ConstructKind::Copy},
+    {S[1], ConstructKind::Move},
+    {S[2], ConstructKind::Unknown}
+};
+
 // Holds relevant information about a parmVarDecl.
 struct FunctionParamInfo {
     std::string FuncId;
@@ -26,6 +42,7 @@ struct FunctionParamInfo {
 };
 struct CallExprInfo {
     unsigned Location;
+    std::shared_ptr<std::string> GlobalLocation;
 };
 // Holds info about parmVarDecl and the corresponding callExpr that causes it
 // to be copied or moved to.
@@ -48,40 +65,51 @@ public:
 
 private:
     void analyzeFeatures() override {
-        Features[p1key] = p1.getFeatures(InFile, *Context);
-        Features[p2key] = p2.getFeatures(InFile, *Context);
+        Features[MoveAndForwardUsageKey] = MoveForwardAnalyzer.getFeatures(InFile, *Context);
+        Features[CopyOrMoveConstrKey] = CopyMoveConstrAnalyzer.getFeatures(InFile, *Context);
     }
-    void processFeatures(nlohmann::ordered_json j) override {
-        Statistics[p1key] = p1.getStatistics(j);
-        Statistics[p2key] = p2.getStatistics(j);
+    void processFeatures(const nlohmann::ordered_json& j) override {
+        Statistics[MoveAndForwardUsageKey] = MoveForwardAnalyzer.getStatistics(j);
+        Statistics[CopyOrMoveConstrKey] = CopyMoveConstrAnalyzer.getStatistics(j);
     }
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
     // Find how often std::move, std::forward from <utility> are used.
     struct StdMoveStdForwardUsageAnalyzer : public TemplateInstantiationAnalysis {
         StdMoveStdForwardUsageAnalyzer();
-        void processFeatures(nlohmann::ordered_json j) override;
-        std::string getShorthand() override { return "msap1"; }
+        void analyzeFeatures() override;
+        void processFeatures(const nlohmann::ordered_json& j) override;
+        std::string_view getShorthand() override { 
+            using namespace std::literals::string_view_literals;
+            return "msap1"sv; 
+        }
     };
     // Examine when calling functions that pass by value, how often copy and
     // move constructors are used to construct the value of the callee.
     struct CopyOrMoveAnalyzer : public Analysis {
-        CopyOrMoveAnalyzer() { std::cout << "CopyOrMoveAnalyzer\n"; }
+        CopyOrMoveAnalyzer() { std::cout << "CopyOrMoveAnalyzer CTOR\n"; }
         void analyzeFeatures() override;
-        void processFeatures(nlohmann::ordered_json j) override;
-        std::string getShorthand() override { return "msap2"; }
+        void processFeatures(const nlohmann::ordered_json& j) override;
+        std::string_view getShorthand() override { 
+            using namespace std::literals::string_view_literals;
+            return "msap2"sv;
+        }
     };
 
     // Analyzers run by MSA
-    StdMoveStdForwardUsageAnalyzer p1;
-    CopyOrMoveAnalyzer p2;
+    StdMoveStdForwardUsageAnalyzer MoveForwardAnalyzer;
+    CopyOrMoveAnalyzer CopyMoveConstrAnalyzer;
 
     // JSON keys
-    static constexpr auto p1key = "std::move, std::forward usage";
-    static constexpr auto p2key = "copy or move construction";
+    static constexpr auto MoveAndForwardUsageKey = "std::move, std::forward usage";
+    static constexpr auto CopyOrMoveConstrKey = "copy or move construction";
 
     static constexpr auto ShorthandName = "msa";
+public:
+    static constexpr std::array<decltype(MoveAndForwardUsageKey), 2> getFeatureKeys(){
+        return { MoveAndForwardUsageKey, CopyOrMoveConstrKey };
+    }
 };
 
 } // namespace msa

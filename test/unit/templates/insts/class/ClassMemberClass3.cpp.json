@@ -3,7 +3,7 @@
         "explicit class insts": {
             "C": [
                 {
-                    "location": 16,
+                    "Location": 17,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -14,8 +14,9 @@
                 }
             ]
         },
-        "implicit class insts": null,
-        "func insts": null,
+        "templated class uses": null,
+        "templated func uses": null,
+        "explicit func insts": null,
         "var insts": null
     }
 }

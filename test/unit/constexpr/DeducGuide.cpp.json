@@ -3,13 +3,13 @@
         "member functions": [
             {
                 "Identifier": "A::A<T>",
-                "Location": 14,
+                "Location": 15,
                 "Type": "void (void)",
                 "isConstexpr": false
             },
             {
                 "Identifier": "A::A<T>",
-                "Location": 15,
+                "Location": 16,
                 "Type": "void (type-parameter-0-0)",
                 "isConstexpr": false
             }

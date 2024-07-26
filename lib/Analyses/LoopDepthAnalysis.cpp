@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 
+#include "cxx-langstat/Analysis.h"
 #include "cxx-langstat/Analyses/LoopDepthAnalysis.h"
+#include "cxx-langstat/Utils.h"
 
 using namespace clang::ast_matchers;
 using ordered_json = nlohmann::ordered_json;
@@ -11,7 +13,9 @@ using ordered_json = nlohmann::ordered_json;
 StatementMatcher constructMixedMatcher(std::string Name, int d){
     auto loopStmt = [](auto m){
         return stmt(
-            isExpansionInMainFile(),
+            // isExpansionInMainFile(),
+            isExpansionInHomeDirectory(),
+            unless(isExpansionInSystemHeader()),
             anyOf(forStmt(m), whileStmt(m), doStmt(m), cxxForRangeStmt(m)));
     };
     StatementMatcher NumOfDescendantsAtLeastD = anything();
@@ -44,7 +48,9 @@ void LoopDepthAnalysis::extractFeatures() {
         unless(hasAncestor(stmt(anyOf(
             forStmt(), whileStmt(), doStmt(), cxxForRangeStmt()))));
     TopLevelLoops = this->Extractor.extract(*Context, "fs1", stmt(
-        isExpansionInMainFile(),
+        // isExpansionInMainFile(),
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()),
         anyOf(
             forStmt(IsOuterMostLoop),
             whileStmt(IsOuterMostLoop),
@@ -85,7 +91,7 @@ void LoopDepthAnalysis::analyzeFeatures(){
     Features = loops;
 }
 
-void LoopDepthAnalysis::processFeatures(nlohmann::ordered_json j){
+void LoopDepthAnalysis::processFeatures(const nlohmann::ordered_json& j){
     std::map<std::string, unsigned> m;
     for(const auto& [depth, locations] : j.items()){
         m.try_emplace(depth, locations.size());

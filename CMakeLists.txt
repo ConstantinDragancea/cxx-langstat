@@ -16,6 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED 17)
 # set(CMAKE_CXX_STANDARD 17) # I prefer to use -std=c++17
 # C++ Compiler
 message(STATUS "C++ Compiler:" ${CMAKE_CXX_COMPILER})
+message(STATUS "C Compiler:" ${CMAKE_C_COMPILER})
 set(CLANGXX ${CMAKE_CXX_COMPILER})
 # No run-time type indentification
 # -fvisibility=hidden to stop linker complaining about weak symbols when linking clang-tidy
@@ -46,9 +47,22 @@ execute_process(COMMAND ${llvm-config} --libs # --system-libs--ignore-libllvm
     OUTPUT_VARIABLE llvm_libs
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+# Get linker flags
+execute_process(COMMAND ${llvm-config} --ldflags
+    OUTPUT_VARIABLE llvm_ldflags
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+# Get cxx flags
+execute_process(COMMAND ${llvm-config} --cxxflags
+    OUTPUT_VARIABLE llvm_cxxflags
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
 
+
+include("${CLANG_DIR}/ClangConfig.cmake")
 # find_package(clang REQUIRED CONFIG)
-# message(STATUS "Using ClangConfig.cmake in: ${clang_DIR}")
+message(STATUS "Using ClangConfig.cmake in: ${CLANG_DIR}")
+include_directories(${CLANG_INCLUDE_DIRS})
 
 message(STATUS "LLVM libs: ${llvm_libs}")
 string(REPLACE "-l" "" llvm_libs ${llvm_libs})
@@ -62,8 +76,11 @@ set(clang_libs
     clangTooling clangFrontend clangToolingCore clangASTMatchers
     clangParse clangDriver clangSerialization clangRewrite clangSema
     clangEdit clangAnalysis clangAST clangLex clangBasic
+    # clangEdit clangAnalysis clangAST clangLex clangAPINotes clangBasic clangSupport
 )
-# message(STATUS "Clang libs: $${clang_libs}")
+message(STATUS "Clang libs: $${clang_libs}")
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${llvm_ldflags}")
 
 # --- Where to look for includes ----
 # Includes from cxx-langstat thus are #include "cxx-langstat/<header>"
@@ -88,7 +105,8 @@ target_link_libraries(${PROJECT_NAME}
     AnalysisList
     Analyses
     MatchingExtractor
-    ${llvm_libs} ${clang_libs}
+    Utils
+    ${clang_libs} ${llvm_libs} 
 )
 
 

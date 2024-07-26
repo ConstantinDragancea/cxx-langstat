@@ -1,0 +1,159 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [
+            {
+                "FunctionHeader": "operator=(const B &)",
+                "Kind": "MemberFunction",
+                "Location": 14
+            },
+            {
+                "FunctionHeader": "operator=(B &&)",
+                "Kind": "MemberFunction",
+                "Location": 14
+            },
+            {
+                "FunctionHeader": "~B()",
+                "Kind": "MemberFunction",
+                "Location": 14
+            },
+            {
+                "FunctionHeader": "C()",
+                "Kind": "Constructor",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "C(const C &)",
+                "Kind": "CopyConstructor",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "C(C &&)",
+                "Kind": "MoveConstructor",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "E(const E &)",
+                "Kind": "CopyConstructor",
+                "Location": 31
+            },
+            {
+                "FunctionHeader": "E(E &&)",
+                "Kind": "MoveConstructor",
+                "Location": 31
+            },
+            {
+                "FunctionHeader": "operator=(const F &)",
+                "Kind": "MemberFunction",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "operator=(F &&)",
+                "Kind": "MemberFunction",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "~F()",
+                "Kind": "MemberFunction",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "F()",
+                "Kind": "Constructor",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "F(const F &)",
+                "Kind": "CopyConstructor",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "F(F &&)",
+                "Kind": "MoveConstructor",
+                "Location": 39
+            }
+        ],
+        "explicit default": [],
+        "delete": [],
+        "inline namespace": [],
+        "final": [],
+        "all noexcept": [
+            {
+                "FunctionHeader": "operator=(const B &)",
+                "Kind": "Specifier",
+                "Location": 14
+            },
+            {
+                "FunctionHeader": "operator=(B &&)",
+                "Kind": "Specifier",
+                "Location": 14
+            },
+            {
+                "FunctionHeader": "~B()",
+                "Kind": "Specifier",
+                "Location": 14
+            },
+            {
+                "FunctionHeader": "C()",
+                "Kind": "Specifier",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "C(const C &)",
+                "Kind": "Specifier",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "C(C &&)",
+                "Kind": "Specifier",
+                "Location": 18
+            },
+            {
+                "FunctionHeader": "E(const E &)",
+                "Kind": "Specifier",
+                "Location": 31
+            },
+            {
+                "FunctionHeader": "E(E &&)",
+                "Kind": "Specifier",
+                "Location": 31
+            },
+            {
+                "FunctionHeader": "operator=(const F &)",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "operator=(F &&)",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "~F()",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "F()",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "F(const F &)",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "F(F &&)",
+                "Kind": "Specifier",
+                "Location": 39
+            }
+        ],
+        "explicit noexcept": [],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [],
+        "static_assert": []
+    }
+}

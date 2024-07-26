@@ -1,6 +1,7 @@
 // RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
 // RUN: %cxx-langstat --analyses=tia -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %t1.ast.json
 // RUN: diff %t1.ast.json %s.json
 //
 //
@@ -29,7 +30,7 @@ void f2(){
 void caller2(){
     f2<short>();
 }
-template void f2<short>(); // Has no effect on class isnts
+template void f2<short>(); // This confuses langstat. It reports f2 as being explicitly isntantiated at line 31
 
 template<typename T>
 void f3(){

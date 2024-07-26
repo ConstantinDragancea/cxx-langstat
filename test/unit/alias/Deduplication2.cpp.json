@@ -1,0 +1,27 @@
+{
+    "ua": {
+        "typedef": [
+            {
+                "Location": 8
+            }
+        ],
+        "using": [
+            {
+                "Location": 9
+            }
+        ],
+        "templated typedef": [
+            {
+                "Location": 18
+            }
+        ],
+        "templated using": [
+            {
+                "Location": 24
+            },
+            {
+                "Location": 12
+            }
+        ]
+    }
+}

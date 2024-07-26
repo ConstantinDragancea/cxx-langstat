@@ -50,7 +50,7 @@
                 }
             ]
         },
-        "func insts": {
+        "implicit func insts": {
             "C::fc": [
                 {
                     "location": 19,
@@ -98,6 +98,7 @@
                 }
             ]
         },
+        "explicit func insts": null,
         "var insts": null
     }
 }

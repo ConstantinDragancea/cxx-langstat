@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 
+#include "cxx-langstat/Analysis.h"
 #include "cxx-langstat/Analyses/ConstexprAnalysis.h"
 #include "cxx-langstat/Utils.h"
 
@@ -12,7 +13,6 @@ using ordered_json = nlohmann::ordered_json;
 //-----------------------------------------------------------------------------
 
 void ConstexprAnalysis::extractFeatures(){
-
     // Printing policy for printing parameter types
     LangOptions LO;
     PrintingPolicy PP(LO);
@@ -27,8 +27,12 @@ void ConstexprAnalysis::extractFeatures(){
     //
     internal::VariadicDynCastAllOfMatcher<Decl, DecompositionDecl>
         decompositionDecl;
+    
+    // Extractic constexpr variables
     auto vr = Extractor.extract2(*Context,
-        varDecl(isExpansionInMainFile(),
+        // varDecl(isExpansionInMainFile(),
+        varDecl(isExpansionInHomeDirectory(),
+            unless(isExpansionInSystemHeader()),
             // Inherit from VarDecl, but not constexpr-able, so don't count these
             unless(anyOf(parmVarDecl(), decompositionDecl())),
             hasInitializer(anything()))
@@ -41,48 +45,58 @@ void ConstexprAnalysis::extractFeatures(){
     if(!Var.empty())
         removeDuplicateMatches(Var);
     for(auto v : Var)
-        Variables.emplace_back(CEDecl(v.Location, v.Node->isConstexpr(),
-            v.getDeclName(PP), v.Node->getType().getAsString(PP)));
-    //
+        Variables.emplace_back(CEDecl(v.Location, v.GlobalLocation, v.Node->isConstexpr(),
+            v.getIdentifierName(), v.Node->getType().getAsString(PP)));
+    
+    // Extracting constexpr functions
     auto fr = Extractor.extract2(*Context,
-        functionDecl(isExpansionInMainFile(),
+        // functionDecl(isExpansionInMainFile(),
+        functionDecl(
+            isExpansionInHomeDirectory(),
+            unless(isExpansionInSystemHeader()),
             // DeductionGuideDecl inherits from FunctionDecl, but not constexpr-able,
             // so don't count here. MethodDecl want to count separately
             unless(anyOf(cxxMethodDecl(), cxxDeductionGuideDecl())))
         .bind("f"));
     auto Func = getASTNodes<clang::FunctionDecl>(fr, "f");
     for(auto v : Func)
-        NonMemberFunctions.emplace_back(CEDecl(v.Location, v.Node->isConstexpr(),
-            v.getDeclName(PP), v.Node->getType().getAsString(PP)));
-    //
+        NonMemberFunctions.emplace_back(CEDecl(v.Location, v.GlobalLocation, v.Node->isConstexpr(),
+            v.getIdentifierName(), v.Node->getType().getAsString(PP)));
+    
+    // Extracting constexpr member functions
     auto mr = Extractor.extract2(*Context,
         cxxMethodDecl(
-            isExpansionInMainFile(),
+            // isExpansionInMainFile(),
+            isExpansionInHomeDirectory(),
+            unless(isExpansionInSystemHeader()),
             // Don't want to match compiler-generated ctors and operator='s
             unless(isImplicit()))
         .bind("m"));
     auto Method = getASTNodes<clang::FunctionDecl>(mr, "m");
     for(auto v : Method)
-        MemberFunctions.emplace_back(CEDecl(v.Location, v.Node->isConstexpr(),
-            v.getDeclName(PP), v.Node->getType().getAsString(PP)));
-    //
+        MemberFunctions.emplace_back(CEDecl(v.Location, v.GlobalLocation, v.Node->isConstexpr(),
+            v.getIdentifierName(), v.Node->getType().getAsString(PP)));
+    
+    // Extracting constexpr if statements
     auto ir = Extractor.extract2(*Context,
-        ifStmt(isExpansionInMainFile())
+        // ifStmt(isExpansionInMainFile())
+        ifStmt(isExpansionInHomeDirectory(), unless(isExpansionInSystemHeader()))
         .bind("i"));
     auto If = getASTNodes<clang::IfStmt>(ir, "i");
     for(auto v : If)
-        IfStmts.emplace_back(CEIfStmt(v.Location, v.Node->isConstexpr()));
+        IfStmts.emplace_back(CEIfStmt(v.Location, v.GlobalLocation, v.Node->isConstexpr()));
 }
 
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CEIfStmt, Location, isConstexpr);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CEDecl, Location, isConstexpr, Identifier,
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CEInfo, Location, GlobalLocation, isConstexpr);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CEIfStmt, Location, GlobalLocation, isConstexpr);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CEDecl, Location, GlobalLocation, isConstexpr, Identifier,
     Type);
 
 template<typename T>
-void ConstexprAnalysis::featuresToJSON(std::string Kind, const std::vector<T>& fs){
-    for(auto f : fs){
-        json f_j = f;
-        Features[Kind].emplace_back(f_j);
+void ConstexprAnalysis::featuresToJSON(const std::string& Kind, const std::vector<T>& features){
+    for(auto feature : features){
+        json feature_json = feature;
+        Features[Kind].emplace_back(feature_json);
     }
 }
 
@@ -105,13 +119,13 @@ unsigned countConstexprOccurences(const ordered_json& j){
 void constexprPopToJSON(ordered_json& Statistics, const ordered_json& j, llvm::StringRef t){
     auto cco = countConstexprOccurences(j);
     Statistics["constexpr usage"][t.str()]["yes"] = cco;
-    Statistics["constexpr usage"][t.str()]["no"] = j.size()-cco;
+    Statistics["constexpr usage"][t.str()]["no"] = j.size() - cco;
 }
 
-void ConstexprAnalysis::processFeatures(nlohmann::ordered_json j){
-    for(auto t : {VarKey, NonMemberFuncKey, MemberFuncKey, IfKey}){
-        if(j.contains(t))
-            constexprPopToJSON(Statistics, j.at(t), t);
+void ConstexprAnalysis::processFeatures(const ordered_json& features){
+    for(auto kind : {VarKey, NonMemberFuncKey, MemberFuncKey, IfKey}){
+        if(features.contains(kind))
+            constexprPopToJSON(Statistics, features.at(kind), kind);
     }
 }
 

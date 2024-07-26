@@ -2,7 +2,7 @@
     "tia": {
         "explicit class insts": null,
         "implicit class insts": null,
-        "func insts": {
+        "implicit func insts": {
             "f1": [
                 {
                     "location": 20,
@@ -127,6 +127,7 @@
                 }
             ]
         },
+        "explicit func insts": null,
         "var insts": null
     }
 }

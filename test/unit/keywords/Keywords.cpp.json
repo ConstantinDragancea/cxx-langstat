@@ -1,0 +1,181 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [
+            {
+                "FunctionHeader": "operator=(const Base &)",
+                "Kind": "MemberFunction",
+                "Location": 13
+            },
+            {
+                "FunctionHeader": "operator=(Base &&)",
+                "Kind": "MemberFunction",
+                "Location": 13
+            },
+            {
+                "FunctionHeader": "~Base()",
+                "Kind": "MemberFunction",
+                "Location": 13
+            },
+            {
+                "FunctionHeader": "operator=(const Derived &)",
+                "Kind": "MemberFunction",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "operator=(Derived &&)",
+                "Kind": "MemberFunction",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "~Derived()",
+                "Kind": "MemberFunction",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "operator=(const Placeholder1 &)",
+                "Kind": "MemberFunction",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "operator=(Placeholder1 &&)",
+                "Kind": "MemberFunction",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "~Placeholder1()",
+                "Kind": "MemberFunction",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "operator=(const Placeholder2 &)",
+                "Kind": "MemberFunction",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "operator=(Placeholder2 &&)",
+                "Kind": "MemberFunction",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "~Placeholder2()",
+                "Kind": "MemberFunction",
+                "Location": 1
+            }
+        ],
+        "explicit default": [],
+        "delete": [],
+        "inline namespace": [],
+        "final": [
+            {
+                "Kind": "Method",
+                "Location": 21
+            },
+            {
+                "Kind": "Method",
+                "Location": 1
+            },
+            {
+                "Kind": "Method",
+                "Location": 1
+            },
+            {
+                "Kind": "Method",
+                "Location": 1
+            },
+            {
+                "Kind": "Method",
+                "Location": 1
+            }
+        ],
+        "all noexcept": [
+            {
+                "FunctionHeader": "operator=(const Base &)",
+                "Kind": "Specifier",
+                "Location": 13
+            },
+            {
+                "FunctionHeader": "operator=(Base &&)",
+                "Kind": "Specifier",
+                "Location": 13
+            },
+            {
+                "FunctionHeader": "~Base()",
+                "Kind": "Specifier",
+                "Location": 13
+            },
+            {
+                "FunctionHeader": "operator=(const Derived &)",
+                "Kind": "Specifier",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "operator=(Derived &&)",
+                "Kind": "Specifier",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "~Derived()",
+                "Kind": "Specifier",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "operator=(const Placeholder1 &)",
+                "Kind": "Specifier",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "operator=(Placeholder1 &&)",
+                "Kind": "Specifier",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "~Placeholder1()",
+                "Kind": "Specifier",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "operator=(const Placeholder2 &)",
+                "Kind": "Specifier",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "operator=(Placeholder2 &&)",
+                "Kind": "Specifier",
+                "Location": 1
+            },
+            {
+                "FunctionHeader": "~Placeholder2()",
+                "Kind": "Specifier",
+                "Location": 1
+            }
+        ],
+        "explicit noexcept": [],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [
+            {
+                "Location": 21,
+                "isOverride": true
+            },
+            {
+                "Location": 1,
+                "isOverride": true
+            },
+            {
+                "Location": 1,
+                "isOverride": true
+            },
+            {
+                "Location": 1,
+                "isOverride": true
+            },
+            {
+                "Location": 1,
+                "isOverride": true
+            }
+        ],
+        "static_assert": []
+    }
+}

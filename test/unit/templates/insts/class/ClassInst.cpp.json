@@ -3,7 +3,7 @@
         "explicit class insts": {
             "Widget1": [
                 {
-                    "location": 23,
+                    "Location": 24,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -15,7 +15,7 @@
             ],
             "Widget1_p": [
                 {
-                    "location": 43,
+                    "Location": 44,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -25,7 +25,7 @@
                     }
                 },
                 {
-                    "location": 44,
+                    "Location": 45,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -36,7 +36,7 @@
                     }
                 },
                 {
-                    "location": 45,
+                    "Location": 46,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -51,7 +51,7 @@
             ],
             "Widget2_p": [
                 {
-                    "location": 52,
+                    "Location": 53,
                     "arguments": {
                         "non-type": [
                             "3",
@@ -63,7 +63,7 @@
                     }
                 },
                 {
-                    "location": 56,
+                    "Location": 57,
                     "arguments": {
                         "non-type": [
                             "3"
@@ -75,7 +75,7 @@
             ],
             "Widget3": [
                 {
-                    "location": 63,
+                    "Location": 64,
                     "arguments": {
                         "non-type": [],
                         "type": [],
@@ -86,10 +86,10 @@
                 }
             ]
         },
-        "implicit class insts": {
+        "templated class uses": {
             "Widget1": [
                 {
-                    "location": 27,
+                    "Location": 28,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -99,7 +99,7 @@
                     }
                 },
                 {
-                    "location": 28,
+                    "Location": 29,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -109,7 +109,7 @@
                     }
                 },
                 {
-                    "location": 29,
+                    "Location": 30,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -119,7 +119,7 @@
                     }
                 },
                 {
-                    "location": 31,
+                    "Location": 32,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -129,7 +129,7 @@
                     }
                 },
                 {
-                    "location": 35,
+                    "Location": 36,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -139,7 +139,7 @@
                     }
                 },
                 {
-                    "location": 36,
+                    "Location": 37,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -151,7 +151,7 @@
             ],
             "Widget1_p": [
                 {
-                    "location": 46,
+                    "Location": 47,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -164,7 +164,7 @@
             ],
             "Widget3": [
                 {
-                    "location": 62,
+                    "Location": 63,
                     "arguments": {
                         "non-type": [],
                         "type": [],
@@ -174,7 +174,7 @@
                     }
                 },
                 {
-                    "location": 64,
+                    "Location": 65,
                     "arguments": {
                         "non-type": [],
                         "type": [],
@@ -185,7 +185,8 @@
                 }
             ]
         },
-        "func insts": null,
+        "templated func uses": null,
+        "explicit func insts": null,
         "var insts": null
     }
 }

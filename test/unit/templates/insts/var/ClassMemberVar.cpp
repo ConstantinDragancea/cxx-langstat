@@ -7,15 +7,15 @@
 //
 
 // Basic test with static class member variable template
-// class Widget {
-// public:
-//     template<typename T>
-//     static T data; // declaration
-// };
-// // Implicit instantiation works fine
-// void caller(){
-//     Widget::data<int> = 3;
-// }
+class Widget {
+public:
+    template<typename T>
+    static T data; // declaration
+};
+// Implicit instantiation works fine
+void caller(){
+    Widget::data<int> = 3;
+}
 
 // Basic test with static class member variable template
 class Widget2 {
@@ -30,15 +30,15 @@ template float Widget2::data<float>; // instantiation
 
 
 // Basic test with static class member variable template
-// class Widget3 {
-// public:
-//     template<typename T>
-//     constexpr static T data=3; // declaration
-// };
+class Widget3 {
+public:
+    template<typename T>
+    constexpr static T data=3; // declaration
+};
 // template<typename T>
-// T Widget2::data = 3; // definition
+// T Widget3::data = 3; // definition
 
-// template const float Widget3::data<float>; // instantiation
+template const float Widget3::data<float>; // instantiation
 
 
 

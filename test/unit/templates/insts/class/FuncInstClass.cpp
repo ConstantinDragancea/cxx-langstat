@@ -1,7 +1,8 @@
 // RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
-// RUN: %cxx-langstat --analyses=tia -emit-features -in %t1.ast -out %t1.ast.json --
-// RUN: diff %t1.ast.json %s.json
+// RUN: %cxx-langstat --analyses=tia -emit-features -in %t1.ast -out %S/a.ast.json --
+// RUN: diff %S/a.ast.json %s.json
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %S/a.ast.json
 //
 //
 //
@@ -23,6 +24,7 @@ void f1(){
 template<typename T>
 void f2(Widget<bool> w){
 }
+template void f2<int>(Widget<bool>);
 template<typename T>
 void f3(){
     Widget<int> w;

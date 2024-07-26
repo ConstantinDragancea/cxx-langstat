@@ -1,0 +1,26 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [],
+        "explicit default": [],
+        "delete": [],
+        "inline namespace": [],
+        "final": [],
+        "all noexcept": [],
+        "explicit noexcept": [],
+        "nullptr": [],
+        "thread_local": [
+            {
+                "Location": 8,
+                "Type": "int"
+            },
+            {
+                "Location": 10,
+                "Type": "int"
+            }
+        ],
+        "override": [],
+        "static_assert": []
+    }
+}

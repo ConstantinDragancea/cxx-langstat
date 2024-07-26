@@ -3,6 +3,7 @@
 
 #include "cxx-langstat/Analyses/ContainerLibAnalysis.h"
 #include "cxx-langstat/Utils.h"
+#include "cxx-langstat/Stats.h"
 
 using namespace clang;
 using namespace clang::ast_matchers;
@@ -30,8 +31,20 @@ ContainerLibAnalysis::ContainerLibAnalysis() : TemplateInstantiationAnalysis(
         "std::stack", "std::queue", "std::priority_queue"
     ),
     // libc++
-    "array|vector|deque|forward_list|list|set|map|unordered_set|unordered_map|"
-    "stack|queue"){
+    "array$|vector$|deque$|forward_list$|list$|set$|"
+    "map$|unordered_set$|unordered_map$|stack$|queue$|"
+    // libstdc++
+    "/bits/.*$"
+    // "bits/vector\\.tcc$|" // this is really weird
+    // "bits/stl_vector\\.h$|bits/stl_bvector\\.h$|"
+    // "bits/stl_deque\\.h$|bits/deque\\.tcc$|"
+    // "bits/forward_list\\.h$|bits/forward_list\\.tcc$|"
+    // "bits/stl_list\\.h$|bits/list\\.tcc$|"
+    // "bits/stl_set\\.h$|bits/stl_map\\.h$|"
+    // "bits/unordered_set\\.h$|bits/unordered_map\\.h$|"
+    // "bits/stl_multiset\\.h$|bits/stl_multimap\\.h$|"
+    // "bits/stl_stack\\.h$|bits/stl_queue\\.h$"
+    ){
     // no libstdc++ header necessary?
     std::cout << "CLA ctor\n";
 }
@@ -55,7 +68,7 @@ namespace {
 // instantiated with int.
 // -1 indicates that we want all arguments interest us.
 // Used to analyze types contained in containers, utilities, smart pointer etc.
-const StringMap<int> NumRelTypes = { // no constexpr support for map
+const StringMap<int> NumRelTypes_type = { // no constexpr support for map
     // ** Containers **
     // sequential containers
     {"std::array", 1}, {"std::vector", 1}, {"std::deque", 1},
@@ -70,6 +83,25 @@ const StringMap<int> NumRelTypes = { // no constexpr support for map
     {"std::stack", 1}, {"std::queue", 1}, {"std::priority_queue", 1},
 };
 
+const StringMap<int> NumRelTypes_nonType = { 
+    {"std::array", 1}, {"std::vector", 0}, {"std::deque", 0},
+    {"std::forward_list", 0}, {"std::list", 0},
+    // associative containers
+    {"std::set", 0}, {"std::map", 0},
+    {"std::multiset", 0}, {"std::multimap", 0},
+    // Same, but unordered
+    {"std::unordered_set", 0}, {"std::unordered_map", 0},
+    {"std::unordered_multiset", 0}, {"std::unordered_multimap", 0},
+    // container adaptors
+    {"std::stack", 0}, {"std::queue", 0}, {"std::priority_queue", 0},
+};
+
+const StringMap<StringMap<int>> NumRelTypes = {
+    {"type", NumRelTypes_type},
+    {"non-type", NumRelTypes_nonType},
+    {"template", {}}
+};
+
 } // namespace
 
 // Gathers data on how often each container template was used.
@@ -79,18 +111,27 @@ void containerPrevalence(const ordered_json& in, ordered_json& out){
 
 // For each container template, gives statistics on how often each instantiation
 // was used by a (member) variable.
-void containertemplateTypeArgPrevalence(const ordered_json& in, ordered_json& out){
+void containerTemplateTypeArgPrevalence(const ordered_json& in, ordered_json& out){
     templateTypeArgPrevalence(in, out, NumRelTypes);
 }
 
-void ContainerLibAnalysis::processFeatures(ordered_json j){
+void ContainerLibAnalysis::processFeatures(const ordered_json& j){
     if(j.contains(ImplicitClassKey)){
         ordered_json res1;
         ordered_json res2;
         containerPrevalence(j.at(ImplicitClassKey), res1);
-        containertemplateTypeArgPrevalence(j.at(ImplicitClassKey), res2);
+        containerTemplateTypeArgPrevalence(j.at(ImplicitClassKey), res2);
         Statistics[ContainerPrevalenceKey] = res1;
         Statistics[ContainedTypesPrevalenceKey] = res2;
+    }
+
+    if (j.contains(ExplicitClassKey)) {
+        ordered_json res1;
+        ordered_json res2;
+        containerPrevalence(j.at(ExplicitClassKey), res1);
+        containerTemplateTypeArgPrevalence(j.at(ExplicitClassKey), res2);
+        Statistics[ContainerPrevalenceKey] = add(std::move(Statistics[ContainerPrevalenceKey]), res1);
+        Statistics[ContainedTypesPrevalenceKey] = add(std::move(Statistics[ContainedTypesPrevalenceKey]), res2);
     }
 }
 

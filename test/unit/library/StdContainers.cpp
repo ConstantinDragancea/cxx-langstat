@@ -1,7 +1,10 @@
-// RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
-// RUN: %cxx-langstat --analyses=cla -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: %cxx-langstat --analyses=cla -emit-features -in %t1.ast -out %S/a.ast.json --
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %S/a.ast.json
 // RUN: diff %t1.ast.json %s.json
+// RUN: rm %t1.ast.json || true
+
+
 // Some old test I still wanted to run to check for library container usage.
 //
 //
@@ -11,6 +14,7 @@
 #include <map>
 #include <set>
 #include <unordered_set>
+#include <cstdint>
 
 // Test with "vector" in different namespace
 // None should match
@@ -30,8 +34,7 @@ namespace n {
 int parmvarfunc(std::vector<int> vec){
     return 0;
 }
-// Returning literals does not match
-// Feature one might add in the future
+// Matching function return type and temporary expressions
 std::vector<int> func2(){
     return std::vector<int>{1,2};
 }
@@ -86,6 +89,13 @@ template<typename T>
 class c1 {
     std::map<T, int> m1;
 };
+
+template <class... Ts>
+struct meta_elements {
+  std::array<int, sizeof...(Ts)> arr;
+};
+
+template class meta_elements<int, int, int>;
 
 int main(int argc, char** argv){
 

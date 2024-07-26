@@ -1,6 +1,8 @@
 #ifndef ANALYSIS_H
 #define ANALYSIS_H
 
+#include <string_view>
+
 #include "clang/ASTMatchers/ASTMatchers.h"
 
 #include <nlohmann/json.hpp>
@@ -22,12 +24,12 @@ public:
     // Get either features or statistics, part of the interface.
     // Return by ref is OK, analysis goes out of scope just after this when particular
     // file is analyzed.
-    const nlohmann::ordered_json& getFeatures(llvm::StringRef InFile, clang::ASTContext& Ctxt){
+    const nlohmann::ordered_json& getFeatures(llvm::StringRef, clang::ASTContext& Ctxt){
         Context = &Ctxt;
         analyzeFeatures();
         return Features;
     }
-    const nlohmann::ordered_json& getStatistics(nlohmann::ordered_json j){
+    const nlohmann::ordered_json& getStatistics(const nlohmann::ordered_json& j){
         processFeatures(j);
         return Statistics;
     }
@@ -35,7 +37,7 @@ public:
     // analysis.
     // Not very nice solution, but ensure that all analyses have name they return
     // and shorthand name can be used to register analysis with factory.
-    virtual std::string getShorthand() = 0;
+    virtual std::string_view getShorthand() = 0;
 protected:
     llvm::StringRef InFile;
     BaseExtractor Extractor;
@@ -50,7 +52,7 @@ protected:
     // hold all interesting features.
     virtual void analyzeFeatures() = 0;
     // Computes interesting statistics from features like prevalences or comparisons.
-    virtual void processFeatures(nlohmann::ordered_json j) = 0;
+    virtual void processFeatures(const nlohmann::ordered_json& j) = 0;
 };
 
 //-----------------------------------------------------------------------------

@@ -1,10 +1,14 @@
 {
     "lka": {
         "for": [
-            13
+            {
+                "Location": 16,
+            }
         ],
         "range-for": [
-            9
+            {
+                "Location": 12,
+            }
         ]
     }
 }

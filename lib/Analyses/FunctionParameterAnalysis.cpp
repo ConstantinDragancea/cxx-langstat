@@ -1,8 +1,10 @@
 #include <iostream>
 
+#include "cxx-langstat/Analysis.h"
 #include "cxx-langstat/Analyses/FunctionParameterAnalysis.h"
-
 #include "cxx-langstat/Utils.h"
+
+#include "llvm/Support/Casting.h"
 
 using namespace clang;
 using namespace clang::ast_matchers;
@@ -36,7 +38,7 @@ bool isUniversalReference(FunctionTemplateDecl* FTD, QualType Param){
                 // Is this overkill?
                 for(unsigned idx=0; idx<TPL->size(); idx++){
                     NamedDecl* CurParam = TPL->getParam(idx);
-                    if(auto TTPDecl = dyn_cast<TemplateTypeParmDecl>(CurParam)){
+                    if(auto TTPDecl = llvm::dyn_cast<TemplateTypeParmDecl>(CurParam)){
                         CanQualType TemplateTypeParmCanonicalType = TTPDecl
                             ->getTypeForDecl()->getCanonicalTypeUnqualified();
                         // TemplateTypeParmCanonicalType.dump();
@@ -66,11 +68,11 @@ void FunctionParameterAnalysis::associateParameters(const Matches<T>& Matches){
         // later goes into JSON containing features
         FunctionTemplateInfo Info;
         // If function templates, look at contained function decl.
-        if(auto ft = dyn_cast<FunctionTemplateDecl>(Node)){
+        if(auto ft = llvm::dyn_cast<FunctionTemplateDecl>(Node)){
             Func = ft->getTemplatedDecl();
             WasTemplate = true;
             FTD = const_cast<FunctionTemplateDecl*>(ft);
-        } else if(auto f = dyn_cast<FunctionDecl>(Node)){
+        } else if(auto f = llvm::dyn_cast<FunctionDecl>(Node)){
             Func = const_cast<FunctionDecl*>(f);
         }
 
@@ -86,7 +88,7 @@ void FunctionParameterAnalysis::associateParameters(const Matches<T>& Matches){
         PP.FullyQualifiedName = true;
         PP.Bool = true;
         Info.Location = match.Location;
-        Info.Identifier = match.getDeclName(PP);
+        Info.Identifier = match.getTypeName(PP);
         Info.Signature = Func->getType().getAsString();
 
         // For each parameter of the function
@@ -138,7 +140,9 @@ void FunctionParameterAnalysis::extractFeatures(){
     internal::VariadicDynCastAllOfMatcher<Type, PackExpansionType> packExpansionType;
 
     auto ftmatcher = functionTemplateDecl(
-        isExpansionInMainFile(),
+        // isExpansionInMainFile(),
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()),
         unless(has(decl(anyOf(
             cxxConstructorDecl(), // Ignore ctors
             functionDecl(hasName("operator="))))))) // Ignore assigment operators
@@ -149,7 +153,9 @@ void FunctionParameterAnalysis::extractFeatures(){
     associateParameters(fts);
 
     auto fmatcher = functionDecl(
-        isExpansionInMainFile(),
+        // isExpansionInMainFile(),
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()),
         unless(anyOf(
             cxxConstructorDecl(), // Ignore ctors
             hasName("operator="), // Ignore assignment operators
@@ -271,7 +277,7 @@ void ParamsCount(ordered_json& Stats, ordered_json j){
     Stats[desc]["universal ref"] = UniversalRef;
 }
 
-void FunctionParameterAnalysis::processFeatures(ordered_json j){
+void FunctionParameterAnalysis::processFeatures(const ordered_json& j){
     if(j.contains("functions"))
         FunctionsCount(Statistics, j.at("functions"), false);
     if(j.contains("function templates"))

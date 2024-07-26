@@ -1,6 +1,8 @@
 #ifndef FUNCTIONPARAMETERANALYSIS_H
 #define FUNCTIONPARAMETERANALYSIS_H
 
+#include <string_view>
+
 #include "cxx-langstat/Analysis.h"
 
 //-----------------------------------------------------------------------------
@@ -36,7 +38,7 @@ enum class ParmKind {
 struct ParmInfo : public BasicInfo {
     ParmInfo() = default;
     ParmInfo(int Location, std::string Identifier, std::string Type) :
-        Type(Type), BasicInfo(Location, Identifier){}
+        BasicInfo(Location, Identifier), Type(Type) { }
     ParmKind Kind;
     bool isInstantiationDependent;
     // Canonical, qualified, desugared type of the parameter. Can be used
@@ -54,7 +56,7 @@ public:
     ~FunctionParameterAnalysis(){
         std::cout << "FPA dtor\n";
     }
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
 private:
@@ -72,7 +74,7 @@ private:
     void associateParameters(const Matches<T>& Matches);
     void extractFeatures();
     void analyzeFeatures() override;
-    void processFeatures(nlohmann::ordered_json j) override;
+    void processFeatures(const nlohmann::ordered_json& j) override;
     // Helper function to gather data about functions or parameters into vector
     template<typename T>
     void gatherData(std::string DeclKind,

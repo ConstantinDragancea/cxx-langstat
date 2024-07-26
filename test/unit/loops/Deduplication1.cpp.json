@@ -1,0 +1,36 @@
+{
+    "lka": {
+        "for": [
+            {
+                "Location": 8,
+            },
+            {
+                "Location": 27,
+            }
+        ],
+        "while": [
+            {
+                "Location": 14,
+            },
+            {
+                "Location": 32,
+            }
+        ],
+        "do-while": [
+            {
+                "Location": 21,
+            },
+            {
+                "Location": 38,
+            }
+        ],
+        "range-for": [
+            {
+                "Location": 4,
+            },
+            {
+                "Location": 24,
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/alias/Deduplication1.ast.json": {
+        "prevalence of typedef/using": {
+            "typedef": 1,
+            "using": 1,
+            "templated typedef": 1,
+            "templated using": 2
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/alias/Deduplication2.ast.json": {
+        "prevalence of typedef/using": {
+            "typedef": 1,
+            "using": 1,
+            "templated typedef": 1,
+            "templated using": 2
+        }
+    }
+}
+{
+    "prevalence of typedef/using": {
+        "typedef": 1,
+        "using": 1,
+        "templated typedef": 1,
+        "templated using": 3
+    }
+}

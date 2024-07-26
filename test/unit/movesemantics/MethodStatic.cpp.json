@@ -1,10 +1,10 @@
 {
     "msa": {
         "std::move, std::forward usage": {
-            "func insts": {
+            "implicit func insts": {
                 "std::move": [
                     {
-                        "location": 23,
+                        "Location": 24,
                         "arguments": {
                             "non-type": [],
                             "type": [
@@ -14,16 +14,17 @@
                         }
                     }
                 ]
-            }
+            },
+            "explicit func insts": null
         },
         "copy or move construction": [
             {
                 "CallExpr": {
-                    "Location": 23
+                    "Location": 24
                 },
                 "Parameter": {
                     "Func Identifier": "C::method",
-                    "Func Location": 18,
+                    "Func Location": 19,
                     "Func Type": "void (struct D)",
                     "Identifier": "d",
                     "Parm Type": "struct D",

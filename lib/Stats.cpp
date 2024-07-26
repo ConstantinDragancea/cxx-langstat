@@ -20,6 +20,8 @@ ordered_json add(ordered_json&& lhs, const ordered_json& rhs){
                 } else if(valr.is_number() && vall.is_number()){
                     lhs[keyl] = valr.get<int>() + vall.get<int>();
                 } else {
+                    std::cout << "Left key: " << keyl << ", value: " << vall << std::endl;
+                    std::cout << "Right key: " << keyr << ", value: " << valr << std::endl;
                     assert(false && "Either lhs or rhs contained illegal data type or inconsistent data");
                 }
             }

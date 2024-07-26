@@ -3,13 +3,13 @@
         "vars": [
             {
                 "Identifier": "d",
-                "Location": 28,
+                "Location": 29,
                 "Type": "const struct C",
                 "isConstexpr": true
             },
             {
                 "Identifier": "v",
-                "Location": 29,
+                "Location": 30,
                 "Type": "const class std::vector<struct C, class std::allocator<struct C> >",
                 "isConstexpr": false
             }
@@ -17,19 +17,19 @@
         "non-member functions": [
             {
                 "Identifier": "func",
-                "Location": 17,
+                "Location": 18,
                 "Type": "void (struct C)",
                 "isConstexpr": true
             },
             {
                 "Identifier": "func2",
-                "Location": 19,
+                "Location": 20,
                 "Type": "void (const class std::vector<struct C, class std::allocator<struct C> > &&)",
                 "isConstexpr": false
             },
             {
                 "Identifier": "main",
-                "Location": 27,
+                "Location": 28,
                 "Type": "int (int, char **)",
                 "isConstexpr": false
             }
@@ -37,7 +37,7 @@
         "member functions": [
             {
                 "Identifier": "E::method",
-                "Location": 24,
+                "Location": 25,
                 "Type": "void (struct C)",
                 "isConstexpr": true
             }

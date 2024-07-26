@@ -1,0 +1,136 @@
+{
+    "cta": {
+        "promise, future usage": {
+            "explicit class insts": null,
+            "templated class uses": null
+        },
+        "async usage": {
+            "templated func uses": null,
+            "explicit func insts": null
+        },
+        "atomic usage": {
+            "explicit class insts": null,
+            "templated class uses": null
+        },
+        "thread usage": {
+            "as variable declarations": {
+                "std::jthread": [
+                    {
+                        "Location": 13,
+                    },
+                    {
+                        "Location": 14,
+                    },
+                    {
+                        "Location": 17,
+                    },
+                    {
+                        "Location": 20,
+                    },
+                    {
+                        "Location": 21,
+                    },
+                    {
+                        "Location": 22,
+                    },
+                    {
+                        "Location": 25,
+                    },
+                    {
+                        "Location": 29,
+                    },
+                    {
+                        "Location": 33,
+                    },
+                    {
+                        "Location": 37,
+                    },
+                    {
+                        "Location": 50,
+                    },
+                    {
+                        "Location": 64,
+                    },
+                    {
+                        "Location": 74,
+                    },
+                    {
+                        "Location": 75,
+                    },
+                    {
+                        "Location": 76,
+                    },
+                    {
+                        "Location": 77,
+                    },
+                    {
+                        "Location": 81,
+                    },
+                    {
+                        "Location": 82,
+                    },
+                    {
+                        "Location": 84,
+                    }
+                ]
+            },
+            "as function return types": {
+                "std::jthread": [
+                    {
+                        "Location": 41,
+                    },
+                    {
+                        "Location": 45,
+                    },
+                    {
+                        "Location": 49,
+                    },
+                    {
+                        "Location": 54,
+                    },
+                    {
+                        "Location": 58,
+                    },
+                    {
+                        "Location": 63,
+                    },
+                    {
+                        "Location": 68,
+                    }
+                ]
+            },
+            "as temporary expressions": {
+                "std::jthread": [
+                    {
+                        "Location": 42,
+                    },
+                    {
+                        "Location": 55,
+                    }
+                ]
+            },
+            "as new pointer expressions": {
+                "std::jthread": [
+                    {
+                        "Location": 46,
+                    },
+                    {
+                        "Location": 60,
+                    },
+                    {
+                        "Location": 70,
+                    },
+                    {
+                        "Location": 84,
+                    }
+                ]
+            }
+        },
+        "mutex usage": {
+            "as variable declarations": {},
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        }
+    }
+}

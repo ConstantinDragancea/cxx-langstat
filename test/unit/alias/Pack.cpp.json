@@ -1,14 +1,16 @@
 {
-    "ua": [
-        {
-            "kind": "Typedef",
-            "location": 17,
-            "templated": true
-        },
-        {
-            "kind": "Alias",
-            "location": 13,
-            "templated": true
-        }
-    ]
+    "ua": {
+        "typedef": [],
+        "using": [],
+        "templated typedef": [
+            {
+                "Location": 18
+            }
+        ],
+        "templated using": [
+            {
+                "Location": 14
+            }
+        ]
+    }
 }

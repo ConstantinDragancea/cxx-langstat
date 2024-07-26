@@ -1,0 +1,268 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [
+            {
+                "FunctionHeader": "operator=(const Base &)",
+                "Kind": "MemberFunction",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "operator=(Base &&)",
+                "Kind": "MemberFunction",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "~Base()",
+                "Kind": "MemberFunction",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "Base(const Base &)",
+                "Kind": "CopyConstructor",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "Base(Base &&)",
+                "Kind": "MoveConstructor",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "operator=(const Derived &)",
+                "Kind": "MemberFunction",
+                "Location": 70
+            },
+            {
+                "FunctionHeader": "operator=(Derived &&)",
+                "Kind": "MemberFunction",
+                "Location": 70
+            },
+            {
+                "FunctionHeader": "~Derived()",
+                "Kind": "MemberFunction",
+                "Location": 70
+            }
+        ],
+        "explicit default": [],
+        "delete": [],
+        "inline namespace": [],
+        "final": [
+            {
+                "Kind": "Class",
+                "Location": 70
+            },
+            {
+                "Kind": "Method",
+                "Location": 77
+            }
+        ],
+        "all noexcept": [
+            {
+                "FunctionHeader": "~Dummy()",
+                "Kind": "Specifier",
+                "Location": 10
+            },
+            {
+                "FunctionHeader": "~Dummy3()",
+                "Kind": "Specifier",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "~Dummy4()",
+                "Kind": "Specifier",
+                "Location": 25
+            },
+            {
+                "FunctionHeader": "~Dummy5()",
+                "Kind": "Specifier",
+                "Location": 32
+            },
+            {
+                "FunctionHeader": "func()",
+                "Kind": "Specifier",
+                "Location": 35
+            },
+            {
+                "FunctionHeader": "~Dummy6()",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "~Dummy7()",
+                "Kind": "Specifier",
+                "Location": 48
+            },
+            {
+                "FunctionHeader": "a()",
+                "Kind": "Specifier",
+                "Location": 53
+            },
+            {
+                "FunctionHeader": "b()",
+                "Kind": "Specifier",
+                "Location": 54
+            },
+            {
+                "FunctionHeader": "c()",
+                "Kind": "Specifier",
+                "Location": 55
+            },
+            {
+                "FunctionHeader": "d()",
+                "Kind": "Specifier",
+                "Location": 56
+            },
+            {
+                "FunctionHeader": "operator=(const Base &)",
+                "Kind": "Specifier",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "operator=(Base &&)",
+                "Kind": "Specifier",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "~Base()",
+                "Kind": "Specifier",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "Base(const Base &)",
+                "Kind": "Specifier",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "Base(Base &&)",
+                "Kind": "Specifier",
+                "Location": 61
+            },
+            {
+                "FunctionHeader": "Derived()",
+                "Kind": "Specifier",
+                "Location": 71
+            },
+            {
+                "FunctionHeader": "operator=(const Derived &)",
+                "Kind": "Specifier",
+                "Location": 70
+            },
+            {
+                "FunctionHeader": "operator=(Derived &&)",
+                "Kind": "Specifier",
+                "Location": 70
+            },
+            {
+                "FunctionHeader": "~Derived()",
+                "Kind": "Specifier",
+                "Location": 70
+            },
+            {
+                "FunctionHeader": "",
+                "Kind": "Operator",
+                "Location": 56
+            },
+            {
+                "FunctionHeader": "",
+                "Kind": "Operator",
+                "Location": 57
+            },
+            {
+                "FunctionHeader": "",
+                "Kind": "Operator",
+                "Location": 57
+            }
+        ],
+        "explicit noexcept": [
+            {
+                "FunctionHeader": "~Dummy()",
+                "Kind": "Specifier",
+                "Location": 10
+            },
+            {
+                "FunctionHeader": "~Dummy3()",
+                "Kind": "Specifier",
+                "Location": 20
+            },
+            {
+                "FunctionHeader": "~Dummy4()",
+                "Kind": "Specifier",
+                "Location": 25
+            },
+            {
+                "FunctionHeader": "~Dummy5()",
+                "Kind": "Specifier",
+                "Location": 32
+            },
+            {
+                "FunctionHeader": "func()",
+                "Kind": "Specifier",
+                "Location": 35
+            },
+            {
+                "FunctionHeader": "~Dummy6()",
+                "Kind": "Specifier",
+                "Location": 39
+            },
+            {
+                "FunctionHeader": "~Dummy7()",
+                "Kind": "Specifier",
+                "Location": 48
+            },
+            {
+                "FunctionHeader": "a()",
+                "Kind": "Specifier",
+                "Location": 53
+            },
+            {
+                "FunctionHeader": "b()",
+                "Kind": "Specifier",
+                "Location": 54
+            },
+            {
+                "FunctionHeader": "c()",
+                "Kind": "Specifier",
+                "Location": 55
+            },
+            {
+                "FunctionHeader": "d()",
+                "Kind": "Specifier",
+                "Location": 56
+            },
+            {
+                "FunctionHeader": "Derived()",
+                "Kind": "Specifier",
+                "Location": 71
+            },
+            {
+                "FunctionHeader": "",
+                "Kind": "Operator",
+                "Location": 56
+            },
+            {
+                "FunctionHeader": "",
+                "Kind": "Operator",
+                "Location": 57
+            },
+            {
+                "FunctionHeader": "",
+                "Kind": "Operator",
+                "Location": 57
+            }
+        ],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [
+            {
+                "Location": 73,
+                "isOverride": true
+            },
+            {
+                "Location": 77,
+                "isOverride": false
+            }
+        ],
+        "static_assert": []
+    }
+}

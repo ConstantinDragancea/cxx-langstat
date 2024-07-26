@@ -1,0 +1,32 @@
+{
+    "cea": {
+        "vars": [
+            {
+                "Identifier": "C::no2",
+                "Location": 20,
+                "Type": "int",
+                "isConstexpr": false
+            },
+            {
+                "Identifier": "C::yes",
+                "Location": 24,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "C::no2",
+                "Location": 27,
+                "Type": "int",
+                "isConstexpr": false
+            }
+        ],
+        "non-member functions": [
+            {
+                "Identifier": "main",
+                "Location": 11,
+                "Type": "int (int, char **)",
+                "isConstexpr": false
+            }
+        ]
+    }
+}

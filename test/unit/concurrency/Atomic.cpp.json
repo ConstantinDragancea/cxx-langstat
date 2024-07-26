@@ -1,0 +1,404 @@
+{
+    "cta": {
+        "promise, future usage": {
+            "explicit class insts": null,
+            "templated class uses": null
+        },
+        "async usage": {
+            "templated func uses": null,
+            "explicit func insts": null
+        },
+        "atomic usage": {
+            "explicit class insts": {
+                "std::atomic": [
+                    {
+                        "Location": 30,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "D"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            },
+            "templated class uses": {
+                "std::atomic": [
+                    {
+                        "Location": 19,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 20,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 32,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "float"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 35,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 36,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 37,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 40,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 44,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 48,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 52,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 56,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 57,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 60,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 61,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 64,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 65,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 69,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 70,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 73,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "short"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 74,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "short"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 77,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 78,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 82,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 83,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 86,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 87,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 91,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 92,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 93,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 94,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 98,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 98,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 99,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 100,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 101,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 101,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            }
+        },
+        "thread usage": {
+            "as variable declarations": {},
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        },
+        "mutex usage": {
+            "as variable declarations": {},
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        }
+    }
+}

@@ -1,6 +1,8 @@
 #ifndef LOOPKINDANALYSIS_H
 #define LOOPKINDANALYSIS_H
 
+#include <string_view>
+
 #include "cxx-langstat/Analysis.h"
 
 //-----------------------------------------------------------------------------
@@ -13,14 +15,26 @@ public:
     ~LoopKindAnalysis(){
         std::cout << "LKA dtor\n";
     }
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
 private:
     void analyzeFeatures() override;
-    void processFeatures(nlohmann::ordered_json j) override;
+    void processFeatures(const nlohmann::ordered_json& j) override;
+
+    // JSON keys
+    static constexpr auto LoopKindPrevalencesKey = "loop kind prevalences";
+    static constexpr auto ForLoopKey = "for";
+    static constexpr auto WhileLoopKey = "while";
+    static constexpr auto DoWhileLoopKey = "do-while";
+    static constexpr auto RangeBasedForLoopKey = "range-for";
+
     //
     static constexpr auto ShorthandName = "lka";
+public:
+    static constexpr std::array<decltype(ForLoopKey), 4> getFeatureKeys() {
+        return { ForLoopKey, WhileLoopKey, DoWhileLoopKey, RangeBasedForLoopKey };
+    };
 };
 
 //-----------------------------------------------------------------------------

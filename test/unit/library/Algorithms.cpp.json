@@ -1,9 +1,9 @@
 {
     "ala": {
-        "func insts": {
+        "templated func uses": {
             "std::max": [
                 {
-                    "location": 19,
+                    "Location": 25,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -13,7 +13,7 @@
                     }
                 },
                 {
-                    "location": 23,
+                    "Location": 30,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "location": 24,
+                    "Location": 31,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -35,7 +35,17 @@
             ],
             "std::min": [
                 {
-                    "location": 22,
+                    "Location": 26,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "double"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 29,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -47,12 +57,104 @@
             ],
             "std::move": [
                 {
-                    "location": 29,
+                    "Location": 37,
                     "arguments": {
                         "non-type": [],
                         "type": [
-                            "std::__wrap_iter<int *>",
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >",
                             "std::back_insert_iterator<std::list<int, std::allocator<int> > >"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::swap": [
+                {
+                    "Location": 32,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::sort": [
+                {
+                    "Location": 40,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 41,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<int *, std::vector<int, std::allocator<int> > >"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 44,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<short *, std::vector<short, std::allocator<short> > >"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 45,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "__gnu_cxx::__normal_iterator<double *, std::vector<double, std::allocator<double> > >"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        },
+        "explicit func insts": {
+            "std::swap": [
+                {
+                    "Location": 20,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "bool"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::min": [
+                {
+                    "Location": 21,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "bool"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::max": [
+                {
+                    "Location": 22,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "bool"
                         ],
                         "template": []
                     }

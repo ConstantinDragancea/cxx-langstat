@@ -3,6 +3,7 @@
 // RUN: %clangxx %s -emit-ast -o Output/nlt.ast
 // RUN: %clangxx %S/empty.cpp -emit-ast -o Output/empty.ast
 // RUN: %cxx-langstat --analyses=ala,cca,cea,cla,fpa,lda,lka,msa,tia,tpa,ua,ula,vta -emit-features -in Output/nlt.ast -in Output/empty.ast -outdir Output/ --
+// RUN: cat Output/empty.ast.json
 // RUN: diff Output/empty.ast.json %S/empty.cpp.json
 
 // Test to test that when input are multiple files, that features from first

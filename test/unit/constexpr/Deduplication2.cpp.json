@@ -1,0 +1,88 @@
+{
+    "cea": {
+        "vars": [
+            {
+                "Identifier": "k_int",
+                "Location": 3,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "flag",
+                "Location": 5,
+                "Type": "const bool",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "Fact::value",
+                "Location": 17,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "Fact<5>::value",
+                "Location": 17,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "Fact<4>::value",
+                "Location": 17,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "Fact<3>::value",
+                "Location": 17,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "Fact<2>::value",
+                "Location": 17,
+                "Type": "const int",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "Fact<1>::value",
+                "Location": 22,
+                "Type": "const int",
+                "isConstexpr": true
+            }
+        ],
+        "non-member functions": [
+            {
+                "Identifier": "get_one",
+                "Location": 5,
+                "Type": "int (void)",
+                "isConstexpr": true
+            },
+            {
+                "Identifier": "pseudo_main",
+                "Location": 25,
+                "Type": "void (void)",
+                "isConstexpr": false
+            },
+            {
+                "Identifier": "if_stmt",
+                "Location": 29,
+                "Type": "bool (void)",
+                "isConstexpr": false
+            }
+        ],
+        "member functions": [
+            {
+                "Identifier": "Base::get_two",
+                "Location": 10,
+                "Type": "int (void)",
+                "isConstexpr": true
+            }
+        ],
+        "if stmts": [
+            {
+                "Location": 30,
+                "isConstexpr": true
+            }
+        ]
+    }
+}

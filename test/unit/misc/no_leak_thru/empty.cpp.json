@@ -1,6 +1,7 @@
 {
     "ala": {
-        "func insts": null
+        "implicit func insts": null,
+        "explicit func insts": null
     },
     "cca": {
         "fdecls": null
@@ -15,14 +16,16 @@
     "lka": null,
     "msa": {
         "std::move, std::forward usage": {
-            "func insts": null
+            "implicit func insts": null,
+            "explicit func insts": null
         },
         "copy or move construction": null
     },
     "tia": {
         "explicit class insts": null,
         "implicit class insts": null,
-        "func insts": null,
+        "implicit func insts": null,
+        "explicit func insts": null,
         "var insts": null
     },
     "tpa": {

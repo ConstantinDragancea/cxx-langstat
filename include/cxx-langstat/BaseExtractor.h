@@ -42,7 +42,7 @@ BaseExtractor::extract2(clang::ASTContext& Context, clang::ast_matchers::interna
         clang::ast_matchers::MatchFinder Finder;
         Finder.addMatcher(Matcher, &Callback);
         Finder.matchAST(Context);
-        return Callback.Results; // move here?
+        return Callback.Results; // move here? No, move would prevent copy elision from happening
 }
 
 //-----------------------------------------------------------------------------

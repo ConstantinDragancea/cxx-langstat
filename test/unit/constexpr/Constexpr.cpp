@@ -1,7 +1,8 @@
-// RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
-// RUN: %cxx-langstat --analyses=cea -emit-features -in %t1.ast -out %t1.ast.json --
-// RUN: diff %t1.ast.json %s.json
+// RUN: %cxx-langstat --analyses=cea -emit-features -in %t1.ast -out %S/a.ast.json --
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %S/a.ast.json
+// RUN: diff %S/a.ast.json %s.json
+// RUN: rm %t1.ast.json || true
 
 // Basic tests to ensure constexpr is looked for only at the right places.
 // Most notably, don't look at places and be like "there's no constexpr" for

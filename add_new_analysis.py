@@ -37,6 +37,7 @@ def write_header(path, analysis_name, analysis_shorthand):
 #ifndef %(header_guard)s
 #define %(header_guard)s
 
+#include <string_view>
 #include "cxx-langstat/Analysis.h"
 
 //-----------------------------------------------------------------------------
@@ -44,7 +45,7 @@ def write_header(path, analysis_name, analysis_shorthand):
 class %(analysis_name)s : public Analysis {
 public:
     %(analysis_name)s();
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
 private:
@@ -82,7 +83,7 @@ void %(analysis_name)s::analyzeFeatures(){
 
 }
 // FIXME: implementation
-void %(analysis_name)s::processFeatures(nlohmann::ordered_json j){
+void %(analysis_name)s::processFeatures(const nlohmann::ordered_json& features){
 
 }
 

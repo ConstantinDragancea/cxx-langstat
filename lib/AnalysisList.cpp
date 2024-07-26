@@ -12,7 +12,7 @@
 
 std::string ConsumeAnalysis(llvm::StringRef& AnalysisList){
     llvm::StringRef UntrimmedAnalysis = AnalysisList.substr(0, AnalysisList.find(','));
-    llvm::StringRef Analysis = UntrimmedAnalysis.trim(' ');
+    llvm::StringRef Analysis = UntrimmedAnalysis.trim(' ').trim('"');
     AnalysisList = AnalysisList.substr(UntrimmedAnalysis.size() + 1);
     return Analysis.str();
 }

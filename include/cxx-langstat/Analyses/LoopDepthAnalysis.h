@@ -1,6 +1,8 @@
 #ifndef LOOPDEPTHANALYSIS_H
 #define LOOPDEPTHANALYSIS_H
 
+#include <string_view>
+
 #include "clang/ASTMatchers/ASTMatchers.h"
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 
@@ -16,7 +18,7 @@ public:
     ~LoopDepthAnalysis(){
         std::cout << "LDA dtor\n";
     }
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
 private:
@@ -27,7 +29,7 @@ private:
     std::vector<Matches<clang::Stmt>> LoopsOfDepth;
     void extractFeatures();
     void analyzeFeatures() override;
-    void processFeatures(nlohmann::ordered_json j) override;
+    void processFeatures(const nlohmann::ordered_json& j) override;
     //
     static constexpr auto ShorthandName = "lda";
 };

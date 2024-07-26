@@ -1,6 +1,8 @@
 #ifndef VARIABLETEMPLATEANALYSIS_H
 #define VARIABLETEMPLATEANALYSIS_H
 
+#include <string_view>
+
 #include "cxx-langstat/Analysis.h"
 
 //-----------------------------------------------------------------------------
@@ -27,14 +29,14 @@ public:
     ~VariableTemplateAnalysis(){
         std::cout << "VTA dtor\n";
     }
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
-private:
+protected:
     void extractFeatures();
     std::vector<VariableFamily> VariableFamilies;
     void analyzeFeatures() override;
-    void processFeatures(nlohmann::ordered_json j) override;
+    void processFeatures(const nlohmann::ordered_json& j) override;
     //
     static constexpr auto ShorthandName = "vta";
 };

@@ -9,6 +9,7 @@
 #include <string>
 
 #include "cxx-langstat/Analyses/CyclomaticComplexityAnalysis.h"
+#include "cxx-langstat/Utils.h"
 
 using namespace clang;
 using namespace clang::ast_matchers;
@@ -20,7 +21,9 @@ void CyclomaticComplexityAnalysis::analyzeFeatures(){
     // Extract function features
     auto id = "fd";
     auto fDecl = functionDecl(
-        isExpansionInMainFile(),
+        // isExpansionInMainFile(),
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()),
         // Should we remove this condition?
         unless(isImplicit()), // Should not be compiler-generated
         hasBody(anything()))  // Should be defined, i.e have a body
@@ -61,22 +64,22 @@ void CyclomaticComplexityAnalysis::analyzeFeatures(){
                 numEdges += (*block)->succ_size();
             unsigned CYC = numEdges - numNodes + 2; // 2 since #connected components P=1
             // Use emplace back because of overloading
-            fdecls[match.getDeclName(PP)].emplace_back(CYC);
+            fdecls[match.getTypeName(PP)].emplace_back(CYC);
         } else {
-            std::cout << "\"" << match.getDeclName(PP) << "\" of type \""
+            std::cout << "\"" << match.getTypeName(PP) << "\" of type \""
             << cast<clang::FunctionDecl>(match.Node)->getType().getAsString()
             << "\" could not be analyzed. This is likely because this function "
                 "is part of a function template.\n";
         }
     }
-    Features["fdecls"] = fdecls;
+    Features[fdeclKey] = fdecls;
 }
 
 // Assumes JSON object where analysis abbreviation (i.e. cca in this case)
 // is already stripped off
-void CyclomaticComplexityAnalysis::processFeatures(nlohmann::ordered_json j){
+void CyclomaticComplexityAnalysis::processFeatures(const nlohmann::ordered_json& j){
     std::map<std::string, unsigned> m;
-    for(const auto& [fdeclname, cycs] : j["fdecls"].items()){
+    for(const auto& [fdeclname, cycs] : j[fdeclKey].items()){
         for(auto cyc : cycs){
             // std::cout << cyc << std::endl;
             m.try_emplace(to_string(cyc), 0);
@@ -85,8 +88,7 @@ void CyclomaticComplexityAnalysis::processFeatures(nlohmann::ordered_json j){
     }
     // for(auto [key, val]:m)
         // std::cout << key << ", " << val << std::endl;
-    std::string desc = "distribution of cyclomatic complexity of functions";
-    Statistics[desc] = m;
+    Statistics[CyclomaticComplexityDistributionKey] = m;
 }
 
 //-----------------------------------------------------------------------------

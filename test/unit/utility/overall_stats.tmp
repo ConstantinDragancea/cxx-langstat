@@ -1,0 +1,92 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/utility/Deduplication1.ast.json": {
+        "utility type prevalence": {
+            "std::bitset": 1,
+            "std::pair": 1,
+            "std::shared_ptr": 2,
+            "std::tuple": 1,
+            "std::unique_ptr": 1,
+            "std::weak_ptr": 1
+        },
+        "utility instantiation type arguments": {
+            "std::bitset": {
+                "8UL": 1
+            },
+            "std::pair": {
+                "char, bool": 1
+            },
+            "std::shared_ptr": {
+                "int": 2
+            },
+            "std::tuple": {
+                "bool, bool, bool": 1
+            },
+            "std::unique_ptr": {
+                "int": 1
+            },
+            "std::weak_ptr": {
+                "int": 1
+            }
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/utility/Deduplication2.ast.json": {
+        "utility type prevalence": {
+            "std::bitset": 1,
+            "std::pair": 1,
+            "std::shared_ptr": 2,
+            "std::tuple": 1,
+            "std::unique_ptr": 1,
+            "std::weak_ptr": 1
+        },
+        "utility instantiation type arguments": {
+            "std::bitset": {
+                "8UL": 1
+            },
+            "std::pair": {
+                "char, bool": 1
+            },
+            "std::shared_ptr": {
+                "int": 2
+            },
+            "std::tuple": {
+                "bool, bool, bool": 1
+            },
+            "std::unique_ptr": {
+                "int": 1
+            },
+            "std::weak_ptr": {
+                "int": 1
+            }
+        }
+    }
+}
+{
+    "utility type prevalence": {
+        "std::bitset": 1,
+        "std::pair": 1,
+        "std::shared_ptr": 3,
+        "std::tuple": 1,
+        "std::unique_ptr": 1,
+        "std::weak_ptr": 1
+    },
+    "utility instantiation type arguments": {
+        "std::bitset": {
+            "8UL": 1
+        },
+        "std::pair": {
+            "char, bool": 1
+        },
+        "std::shared_ptr": {
+            "int": 3
+        },
+        "std::tuple": {
+            "bool, bool, bool": 1
+        },
+        "std::unique_ptr": {
+            "int": 1
+        },
+        "std::weak_ptr": {
+            "int": 1
+        }
+    }
+}

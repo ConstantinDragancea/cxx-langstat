@@ -1,0 +1,93 @@
+{
+    "ula": {
+        "explicit class insts": null,
+        "implicit class insts": {
+            "std::pair": [
+                {
+                    "Location": 6,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "char",
+                            "bool"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::tuple": [
+                {
+                    "Location": 7,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "bool",
+                            "bool",
+                            "bool"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::bitset": [
+                {
+                    "Location": 9,
+                    "arguments": {
+                        "non-type": [
+                            "8UL"
+                        ],
+                        "type": [],
+                        "template": []
+                    }
+                }
+            ],
+            "std::unique_ptr": [
+                {
+                    "Location": 10,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int",
+                            "std::default_delete<int>"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::shared_ptr": [
+                {
+                    "Location": 11,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "Location": 21,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "std::weak_ptr": [
+                {
+                    "Location": 12,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        }
+    }
+}

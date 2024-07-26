@@ -1,10 +1,10 @@
 {
     "cla": {
         "explicit class insts": null,
-        "implicit class insts": {
+        "templated class uses": {
             "std::vector": [
                 {
-                    "location": 21,
+                    "Location": 24,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "location": 23,
+                    "Location": 26,
                     "arguments": {
                         "non-type": [],
                         "type": [

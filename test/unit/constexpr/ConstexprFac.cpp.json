@@ -3,25 +3,25 @@
         "vars": [
             {
                 "Identifier": "f",
-                "Location": 16,
+                "Location": 17,
                 "Type": "struct Fac",
                 "isConstexpr": false
             },
             {
                 "Identifier": "f",
-                "Location": 19,
+                "Location": 20,
                 "Type": "const struct Fac",
                 "isConstexpr": true
             },
             {
                 "Identifier": "f",
-                "Location": 30,
+                "Location": 31,
                 "Type": "const struct Fac",
                 "isConstexpr": true
             },
             {
                 "Identifier": "x",
-                "Location": 31,
+                "Location": 32,
                 "Type": "const int",
                 "isConstexpr": true
             }
@@ -29,7 +29,7 @@
         "non-member functions": [
             {
                 "Identifier": "main",
-                "Location": 29,
+                "Location": 30,
                 "Type": "int (int, char **)",
                 "isConstexpr": false
             }
@@ -37,26 +37,26 @@
         "member functions": [
             {
                 "Identifier": "Fac::Fac",
-                "Location": 13,
+                "Location": 14,
                 "Type": "void (void)",
                 "isConstexpr": true
             },
             {
                 "Identifier": "Fac::Fac",
-                "Location": 14,
+                "Location": 15,
                 "Type": "void (int)",
                 "isConstexpr": true
             },
             {
                 "Identifier": "Fac::get",
-                "Location": 23,
+                "Location": 24,
                 "Type": "int (void) const",
                 "isConstexpr": true
             }
         ],
         "if stmts": [
             {
-                "Location": 15,
+                "Location": 16,
                 "isConstexpr": false
             }
         ]

@@ -1,7 +1,8 @@
-// RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
 // RUN: %cxx-langstat --analyses=ua -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %t1.ast.json
 // RUN: diff %t1.ast.json %s.json
+// RUN: rm %t1.ast.json || true
 
 // Test that typedefs inside a class template specialization that DOES stem
 // from a "typedef template" are not reported as "plain typedefs"

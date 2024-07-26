@@ -1,33 +1,20 @@
 {
     "msa": {
         "std::move, std::forward usage": {
-            "func insts": null
+            "implicit func insts": null,
+            "explicit func insts": null
         },
         "copy or move construction": [
-            {
-                "CallExpr": {
-                    "Location": 29
-                },
-                "Parameter": {
-                    "Func Identifier": "funcc",
-                    "Func Location": 23,
-                    "Func Type": "void (class C)",
-                    "Identifier": "c",
-                    "Parm Type": "class C",
-                    "construction kind": "copy",
-                    "copy/move ctor is compiler-generated": true
-                }
-            },
             {
                 "CallExpr": {
                     "Location": 30
                 },
                 "Parameter": {
-                    "Func Identifier": "funcd",
-                    "Func Location": 25,
-                    "Func Type": "void (class D)",
-                    "Identifier": "d",
-                    "Parm Type": "class D",
+                    "Func Identifier": "funcc",
+                    "Func Location": 24,
+                    "Func Type": "void (class C)",
+                    "Identifier": "c",
+                    "Parm Type": "class C",
                     "construction kind": "copy",
                     "copy/move ctor is compiler-generated": true
                 }
@@ -38,7 +25,21 @@
                 },
                 "Parameter": {
                     "Func Identifier": "funcd",
-                    "Func Location": 25,
+                    "Func Location": 26,
+                    "Func Type": "void (class D)",
+                    "Identifier": "d",
+                    "Parm Type": "class D",
+                    "construction kind": "copy",
+                    "copy/move ctor is compiler-generated": true
+                }
+            },
+            {
+                "CallExpr": {
+                    "Location": 32
+                },
+                "Parameter": {
+                    "Func Identifier": "funcd",
+                    "Func Location": 26,
                     "Func Type": "void (class D)",
                     "Identifier": "d",
                     "Parm Type": "class D",

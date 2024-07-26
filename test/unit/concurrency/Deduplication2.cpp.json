@@ -1,0 +1,124 @@
+{
+    "cta": {
+        "promise, future usage": {
+            "explicit class insts": null,
+            "templated class uses": {
+                "std::future": [
+                    {
+                        "Location": 5,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 10,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    }
+                ],
+                "std::promise": [
+                    {
+                        "Location": 6,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 11,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            }
+        },
+        "async usage": {
+            "templated func uses": null,
+            "explicit func insts": null
+        },
+        "atomic usage": {
+            "explicit class insts": null,
+            "templated class uses": {
+                "std::atomic": [
+                    {
+                        "Location": 7,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 12,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "Base"
+                            ],
+                            "template": []
+                        }
+                    },
+                    {
+                        "Location": 15,
+                        "arguments": {
+                            "non-type": [],
+                            "type": [
+                                "int"
+                            ],
+                            "template": []
+                        }
+                    }
+                ]
+            }
+        },
+        "thread usage": {
+            "as variable declarations": {
+                "std::thread": [
+                    {
+                        "Location": 13,
+                    },
+                    {
+                        "Location": 8,
+                    }
+                ]
+            },
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        },
+        "mutex usage": {
+            "as variable declarations": {
+                "std::mutex": [
+                    {
+                        "Location": 14,
+                    },
+                    {
+                        "Location": 9,
+                    }
+                ]
+            },
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        }
+    }
+}

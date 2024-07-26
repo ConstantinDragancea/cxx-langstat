@@ -1,0 +1,38 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/movesemantics/Deduplication1.ast.json": {
+        "std::move, std::forward usage": {
+            "std::forward": 2,
+            "std::move": 1
+        },
+        "copy or move construction": {
+            "total": {
+                "copy": 0,
+                "move": 0
+            }
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/movesemantics/Deduplication2.ast.json": {
+        "std::move, std::forward usage": {
+            "std::forward": 2,
+            "std::move": 1
+        },
+        "copy or move construction": {
+            "total": {
+                "copy": 0,
+                "move": 0
+            }
+        }
+    }
+}
+{
+    "std::move, std::forward usage": {
+        "std::forward": 2,
+        "std::move": 1
+    },
+    "copy or move construction": {
+        "total": {
+            "copy": 0,
+            "move": 0
+        }
+    }
+}

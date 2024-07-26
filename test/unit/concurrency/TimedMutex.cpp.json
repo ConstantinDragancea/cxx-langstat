@@ -1,0 +1,136 @@
+{
+    "cta": {
+        "promise, future usage": {
+            "explicit class insts": null,
+            "templated class uses": null
+        },
+        "async usage": {
+            "templated func uses": null,
+            "explicit func insts": null
+        },
+        "atomic usage": {
+            "explicit class insts": null,
+            "templated class uses": null
+        },
+        "thread usage": {
+            "as variable declarations": {},
+            "as function return types": {},
+            "as temporary expressions": {},
+            "as new pointer expressions": {}
+        },
+        "mutex usage": {
+            "as variable declarations": {
+                "std::timed_mutex": [
+                    {
+                        "Location": 12,
+                    },
+                    {
+                        "Location": 13,
+                    },
+                    {
+                        "Location": 16,
+                    },
+                    {
+                        "Location": 19,
+                    },
+                    {
+                        "Location": 20,
+                    },
+                    {
+                        "Location": 21,
+                    },
+                    {
+                        "Location": 24,
+                    },
+                    {
+                        "Location": 28,
+                    },
+                    {
+                        "Location": 32,
+                    },
+                    {
+                        "Location": 36,
+                    },
+                    {
+                        "Location": 49,
+                    },
+                    {
+                        "Location": 63,
+                    },
+                    {
+                        "Location": 73,
+                    },
+                    {
+                        "Location": 74,
+                    },
+                    {
+                        "Location": 75,
+                    },
+                    {
+                        "Location": 76,
+                    },
+                    {
+                        "Location": 80,
+                    },
+                    {
+                        "Location": 81,
+                    },
+                    {
+                        "Location": 83,
+                    }
+                ]
+            },
+            "as function return types": {
+                "std::timed_mutex": [
+                    {
+                        "Location": 40,
+                    },
+                    {
+                        "Location": 44,
+                    },
+                    {
+                        "Location": 48,
+                    },
+                    {
+                        "Location": 53,
+                    },
+                    {
+                        "Location": 57,
+                    },
+                    {
+                        "Location": 62,
+                    },
+                    {
+                        "Location": 67,
+                    }
+                ]
+            },
+            "as temporary expressions": {
+                "std::timed_mutex": [
+                    {
+                        "Location": 41,
+                    },
+                    {
+                        "Location": 54,
+                    }
+                ]
+            },
+            "as new pointer expressions": {
+                "std::timed_mutex": [
+                    {
+                        "Location": 45,
+                    },
+                    {
+                        "Location": 59,
+                    },
+                    {
+                        "Location": 69,
+                    },
+                    {
+                        "Location": 83,
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,121 @@
+{
+    "mka": {
+        "alignas": [],
+        "alignof": [],
+        "all default": [
+            {
+                "FunctionHeader": "Base()",
+                "Kind": "Constructor",
+                "Location": 3
+            },
+            {
+                "FunctionHeader": "operator=(const Base &)",
+                "Kind": "MemberFunction",
+                "Location": 2
+            },
+            {
+                "FunctionHeader": "operator=(Base &&)",
+                "Kind": "MemberFunction",
+                "Location": 2
+            },
+            {
+                "FunctionHeader": "~Base()",
+                "Kind": "MemberFunction",
+                "Location": 2
+            },
+            {
+                "FunctionHeader": "operator=(const Derived &)",
+                "Kind": "MemberFunction",
+                "Location": 8
+            },
+            {
+                "FunctionHeader": "operator=(Derived &&)",
+                "Kind": "MemberFunction",
+                "Location": 8
+            },
+            {
+                "FunctionHeader": "~Derived()",
+                "Kind": "MemberFunction",
+                "Location": 8
+            }
+        ],
+        "explicit default": [
+            {
+                "FunctionHeader": "Base()",
+                "Kind": "Constructor",
+                "Location": 3
+            }
+        ],
+        "delete": [],
+        "inline namespace": [],
+        "final": [
+            {
+                "Kind": "Class",
+                "Location": 8
+            }
+        ],
+        "all noexcept": [
+            {
+                "FunctionHeader": "bar()",
+                "Kind": "Specifier",
+                "Location": 5
+            },
+            {
+                "FunctionHeader": "operator=(const Base &)",
+                "Kind": "Specifier",
+                "Location": 2
+            },
+            {
+                "FunctionHeader": "operator=(Base &&)",
+                "Kind": "Specifier",
+                "Location": 2
+            },
+            {
+                "FunctionHeader": "~Base()",
+                "Kind": "Specifier",
+                "Location": 2
+            },
+            {
+                "FunctionHeader": "operator=(const Derived &)",
+                "Kind": "Specifier",
+                "Location": 8
+            },
+            {
+                "FunctionHeader": "operator=(Derived &&)",
+                "Kind": "Specifier",
+                "Location": 8
+            },
+            {
+                "FunctionHeader": "~Derived()",
+                "Kind": "Specifier",
+                "Location": 8
+            },
+            {
+                "FunctionHeader": "pseudo_main()",
+                "Kind": "Specifier",
+                "Location": 5
+            }
+        ],
+        "explicit noexcept": [
+            {
+                "FunctionHeader": "bar()",
+                "Kind": "Specifier",
+                "Location": 5
+            },
+            {
+                "FunctionHeader": "pseudo_main()",
+                "Kind": "Specifier",
+                "Location": 5
+            }
+        ],
+        "nullptr": [],
+        "thread_local": [],
+        "override": [
+            {
+                "Location": 9,
+                "isOverride": true
+            }
+        ],
+        "static_assert": []
+    }
+}

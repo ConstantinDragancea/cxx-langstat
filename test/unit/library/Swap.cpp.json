@@ -1,0 +1,21 @@
+{
+    "ala": {
+        "templated func uses": {
+            "std::swap": [
+                {
+                    "Location": 33,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "void",
+                            "const char *",
+                            "int"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        },
+        "explicit func insts": null
+    }
+}

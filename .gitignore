@@ -12,11 +12,16 @@
 
 # Editors & build dirs
 build/
+build17/
+build18/
 cmake-build-debug/
 .idea/
+.vscode
 
 # Ignore AST files (for now)
 *.ast
+*.ast.json
+overall_stats
 
 # Ignore llvm-lit temporary output
 test/unit/**/Output

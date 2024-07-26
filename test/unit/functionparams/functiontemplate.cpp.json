@@ -19,7 +19,7 @@
                 "ByValue": 1,
                 "Identifier": "f1",
                 "Location": 18,
-                "Signature": "void (class C)"
+                "Signature": "void (C)"
             },
             {
                 "ByConstLvalueRef": 0,
@@ -29,7 +29,7 @@
                 "ByValue": 0,
                 "Identifier": "f2",
                 "Location": 21,
-                "Signature": "void (class C &)"
+                "Signature": "void (C &)"
             },
             {
                 "ByConstLvalueRef": 1,
@@ -39,7 +39,7 @@
                 "ByValue": 0,
                 "Identifier": "f3",
                 "Location": 24,
-                "Signature": "void (const class C &)"
+                "Signature": "void (const C &)"
             },
             {
                 "ByConstLvalueRef": 0,
@@ -49,7 +49,7 @@
                 "ByValue": 0,
                 "Identifier": "f4",
                 "Location": 27,
-                "Signature": "void (class C &&)"
+                "Signature": "void (C &&)"
             },
             {
                 "ByConstLvalueRef": 0,
@@ -129,7 +129,7 @@
                 "Identifier": "param",
                 "Kind": 3,
                 "Location": 37,
-                "Type": "vector<type-parameter-0-0, allocator<type-parameter-0-0> > &&",
+                "Type": "std::vector<type-parameter-0-0, std::allocator<type-parameter-0-0> > &&",
                 "isInstantiationDependent": true
             }
         ]

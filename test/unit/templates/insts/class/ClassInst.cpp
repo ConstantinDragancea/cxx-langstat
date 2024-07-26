@@ -1,6 +1,7 @@
 // RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
 // RUN: %cxx-langstat --analyses=tia -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %t1.ast.json
 // RUN: diff %t1.ast.json %s.json
 // Test file to check if basic class instantiations are correctly found & each and
 // every one of them is detected.

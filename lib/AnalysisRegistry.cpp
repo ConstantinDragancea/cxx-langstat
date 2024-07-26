@@ -7,10 +7,13 @@
 #include "cxx-langstat/Analyses/ConstexprAnalysis.h"
 #include "cxx-langstat/Analyses/CyclomaticComplexityAnalysis.h"
 #include "cxx-langstat/Analyses/ContainerLibAnalysis.h"
+#include "cxx-langstat/Analyses/ConcurrencyToolsAnalysis.h"
 #include "cxx-langstat/Analyses/FunctionParameterAnalysis.h"
 #include "cxx-langstat/Analyses/LoopDepthAnalysis.h"
 #include "cxx-langstat/Analyses/LoopKindAnalysis.h"
+#include "cxx-langstat/Analyses/ModernKeywordsAnalysis.h"
 #include "cxx-langstat/Analyses/MoveSemanticsAnalysis.h"
+#include "cxx-langstat/Analyses/ObjectUsageAnalysis.h"
 #include "cxx-langstat/Analyses/TemplateInstantiationAnalysis.h"
 #include "cxx-langstat/Analyses/TemplateParameterAnalysis.h"
 #include "cxx-langstat/Analyses/UsingAnalysis.h"
@@ -45,14 +48,20 @@ void AnalysisRegistry::createFreshAnalyses(){
         Analyses.emplace_back(std::make_unique<ConstexprAnalysis>());
     if(Options.EnabledAnalyses.contains("cla"))
         Analyses.emplace_back(std::make_unique<ContainerLibAnalysis>());
+    if(Options.EnabledAnalyses.contains("cta"))
+        Analyses.emplace_back(std::make_unique<ConcurrencyToolsAnalysis>());
     if(Options.EnabledAnalyses.contains("fpa"))
         Analyses.emplace_back(std::make_unique<FunctionParameterAnalysis>());
     if(Options.EnabledAnalyses.contains("lda"))
         Analyses.emplace_back(std::make_unique<LoopDepthAnalysis>(5));
     if(Options.EnabledAnalyses.contains("lka"))
         Analyses.emplace_back(std::make_unique<LoopKindAnalysis>());
+    if(Options.EnabledAnalyses.contains("mka"))
+        Analyses.emplace_back(std::make_unique<ModernKeywordsAnalysis>());
     if(Options.EnabledAnalyses.contains("msa"))
         Analyses.emplace_back(std::make_unique<msa::MoveSemanticsAnalysis>());
+    if (Options.EnabledAnalyses.contains("oua"))
+        Analyses.emplace_back(std::make_unique<ObjectUsageAnalysis>());
     if(Options.EnabledAnalyses.contains("tia"))
         Analyses.emplace_back(std::make_unique<TemplateInstantiationAnalysis>());
     if(Options.EnabledAnalyses.contains("tpa"))

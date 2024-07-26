@@ -1,17 +1,17 @@
 #include <iostream>
 #include <future>
+#include <filesystem>
 
 #include "llvm/Support/CommandLine.h"
 
 #include "cxx-langstat/Options.h"
 #include "cxx-langstat/Driver.h"
 
-#include <dirent.h>
-
-using Twine = llvm::Twine;
 using StringRef = llvm::StringRef;
 
 using namespace clang::tooling;
+using namespace llvm;
+namespace fs = std::filesystem;
 
 //-----------------------------------------------------------------------------
 // Global variables
@@ -101,99 +101,115 @@ llvm::cl::alias ParallelismOptionAlias(
 //-----------------------------------------------------------------------------
 bool isSuitableExtension(llvm::StringRef s, Stage Stage){
     if(Stage == emit_features) {
-        return s.equals(".cpp") || s.equals(".cc") || s.equals(".cxx")
-            || s.equals(".C")
-            || s.equals(".hpp") || s.equals(".hh") || s.equals(".hxx")
-            || s.equals(".H")
-            || s.equals(".c++") || s.equals(".h++")
-            || s.equals(".c") || s.equals(".h") // C file formats
-            || s.equals(".ast"); // AST file
+        return s.equals(".ast"); // TODO: change back to the other equals
+        // return s.equals(".cpp") || s.equals(".cc") || s.equals(".cxx")
+        //     || s.equals(".C")
+        //     || s.equals(".hpp") || s.equals(".hh") || s.equals(".hxx")
+        //     || s.equals(".H")
+        //     || s.equals(".c++") || s.equals(".h++")
+        //     || s.equals(".c") || s.equals(".h") // C file formats
+        //     || s.equals(".ast"); // AST file
     } else if(Stage == emit_statistics){
         return s.equals(".json");
     }
     return false;
 }
 
-// Returns vector of relative paths of interesting files (source & .ast files
-// or .json files) containing in dir with name T. function assumes that T
-// suffices with an "/", as it should specify a dir.
-std::vector<std::string> getFiles(const Twine& T, Stage Stage){
-    // http://www.martinbroadhurst.com/list-the-files-in-a-directory-in-c.html
-    // Trust me, would prefer to use <filesystem> too, but I'd have to upgrade
-    // to macOS 10.15. Might change this to use conditional compilation
-    // to enable <filesystem> for OSes that can use it.
-    DIR* dirp = opendir(T.str().c_str());
-    if(dirp){
-        // std::cout << "dir: " << T.str().c_str() << std::endl;
-        struct dirent* dp;
-        std::vector<std::string> files;
-        std::vector<std::string> res;
-        while ((dp = readdir(dirp)) != NULL) {
-            files.emplace_back(dp->d_name);
-        }
-        closedir(dirp);
-        std::vector<std::string> dirfiles;
-        for(auto file : files){
-            // Ignore hidden files & dirs
-            if(!llvm::StringRef(file).consume_front(".")){
-                // File is interesting to us
-                if(isSuitableExtension(llvm::sys::path::extension(file), Stage)){
-                    res.emplace_back((T + file).str());
-                // File might indicate a directory, store it to search thru it later
-                } else if(!llvm::sys::path::filename(file).equals(".")
-                    && !llvm::sys::path::filename(file).equals("..")) {
-                        dirfiles.emplace_back((T + file).str() + "/");
-                }
+std::vector<std::string> getFiles(const std::string& Directory, Stage Stage){
+    std::vector<std::string> res;
+    for (const auto& entry : fs::recursive_directory_iterator(Directory)) {
+        if (entry.is_regular_file()) {
+            if (isSuitableExtension(llvm::sys::path::extension(entry.path().string()), Stage)) {
+                res.emplace_back(entry.path().string());
             }
         }
-        // Search thru dirs stored before
-        for(auto dirfile : dirfiles) {
-            auto files = getFiles(dirfile, Stage);
-            for(auto file : files)
-                res.emplace_back(file);
-        }
-        return res;
     }
-    return {};
+    return res;
+}
+
+void copyDirectoryStructure(const fs::path& source, const fs::path& destination) {
+    if (!fs::exists(source) || !fs::is_directory(source)) {
+        std::cout << "Source directory does not exist or is not a directory\n";
+        return;
+    }
+
+    // Create the destination directory if it doesn't exist
+    if (!fs::exists(destination)) {
+        fs::create_directories(destination);
+    }
+
+    // Recursively iterate through the source directory
+    for (const auto& entry : fs::recursive_directory_iterator(source)) {
+        if (entry.is_directory()) {
+            // Compute the relative path and create corresponding directory in the destination
+            fs::path relativePath = fs::relative(entry.path(), source);
+            fs::path newDir = destination / relativePath;
+            fs::create_directories(newDir);
+            // std::cout << "Created directory: " << newDir << '\n';
+        }
+    }
 }
 
 //-----------------------------------------------------------------------------
 // Runs 'Jobs' parallel instances of CXXLangstatMain when -emit-features is enabled
 int ParallelEmitFeatures(std::vector<std::string> InputFiles,
-    std::vector<std::string> OutputFiles, Stage s, std::string Analyses,
+    std::vector<std::string> OutputFiles, Stage stage, std::string Analyses,
     std::string BuildPath,
     std::shared_ptr<clang::tooling::CompilationDatabase> db,
     unsigned Jobs){
+        Jobs = std::min(Jobs, static_cast<unsigned>(InputFiles.size()));
+        Jobs = std::max(Jobs, 1U);
+
         if(Jobs == 1)
             return CXXLangstatMain(InputFiles, OutputFiles, PipelineStage,
                 Analyses, BuildPath, db);
 
         // Function assumes InputFiles.size = OutputFiles.size
         unsigned Files = InputFiles.size();
-        if(Jobs > Files)
-            Jobs = Files;
-        unsigned WorkPerJob = Files/Jobs;
-        unsigned JobsWith1Excess = Files%Jobs;
-        unsigned b = 0;
+        // if(Jobs > Files)
+        //     Jobs = Files;
+        // unsigned WorkPerJob = Files/Jobs;
+        // unsigned JobsWith1Excess = Files%Jobs;
+        // unsigned b = 0;
         // Need to store futures from std::async in vector, otherwise ~future
         // blocks parallelism.
         // https://stackoverflow.com/questions/36920579/how-to-use-stdasync-to-call-a-function-in-a-mutex-protected-loop
         std::vector<std::future<int>> futures;
-        for(unsigned idx=0; idx<Jobs; idx++){
-            unsigned Work = WorkPerJob;
-            if(idx < JobsWith1Excess){
-                Work++;
-            }
-            // std::cout << b << ", " << b+Work << std::endl;
-            std::vector<std::string> In(InputFiles.begin() + b,
-                InputFiles.begin() + b + Work);
-            std::vector<std::string> Out(OutputFiles.begin() + b,
-                OutputFiles.begin() + b + Work);
-            b+=Work;
-            auto r = std::async(std::launch::async, CXXLangstatMain, In,
-                Out, s, Analyses, BuildPath, db); // pipeline stage was the problem for async, probably because still 'unparsed'
+
+        std::vector<
+            std::vector<std::string> > futures_InputFiles(Jobs);
+        std::vector< 
+            std::vector<std::string> > futures_OutputFiles(Jobs);
+
+        for (unsigned idx = 0; idx < InputFiles.size(); idx++){
+            futures_InputFiles[idx % Jobs].push_back(InputFiles[idx]);
+            futures_OutputFiles[idx % Jobs].push_back(OutputFiles[idx]);
+        }
+        
+        for(unsigned idx=0; idx < Jobs; idx++){
+            // unsigned Work = WorkPerJob;
+            // if(idx < JobsWith1Excess){
+            //     Work++;
+            // }
+            // // std::cout << b << ", " << b+Work << std::endl;
+            // std::vector<std::string> In(InputFiles.begin() + b,
+            //     InputFiles.begin() + b + Work);
+            // std::vector<std::string> Out(OutputFiles.begin() + b,
+            //     OutputFiles.begin() + b + Work);
+            // b+=Work;
+            auto r = std::async(std::launch::async, CXXLangstatMain, futures_InputFiles[idx],
+                futures_OutputFiles[idx], stage, Analyses, BuildPath, db); // pipeline stage was the problem for async, probably because still 'unparsed'
             futures.emplace_back(std::move(r));
         }
+
+        // get the result of all the futures
+        if (static_cast<unsigned>(std::count_if(futures.begin(), futures.end(), [](std::future<int>& f) {
+            return f.get() == 0;
+        })) != futures.size()) {
+            std::cout << "Some futures failed" << std::endl;
+            return 1;
+        }
+
         return 0;
     }
 
@@ -245,12 +261,17 @@ int main(int argc, char** argv){
         InputDirOption += "/";
     if(!OutputDirOption.empty() && !StringRef(OutputDirOption).consume_back("/"))
         OutputDirOption += "/";
+    if (!InputDirOption.empty() && !OutputDirOption.empty())
+        copyDirectoryStructure(InputDirOption.getValue(), OutputDirOption.getValue());
 
     if(Files){
         InputFiles = InputFilesOption;
     } else {
         InputFiles = getFiles(InputDirOption, PipelineStage);
-        std::sort(InputFiles.begin(), InputFiles.end());
+        // sort by file size
+        std::sort(InputFiles.begin(), InputFiles.end(), [](const std::string& a, const std::string& b){
+            return fs::file_size(a) < fs::file_size(b);
+        });
     }
 
     // When multiple output files are a fact (multiple input files) or very
@@ -273,9 +294,18 @@ int main(int argc, char** argv){
                 if(OutputDirOption.empty()){ // obliged to specify output dir
                     assert(false && "Please specify an output dir\n");
                 } else {
-                    for(const auto& File : InputFiles){ // place at output dir specified
-                        StringRef filename = llvm::sys::path::filename(File);
-                        OutputFiles.emplace_back(OutputDirOption + filename.str() + ".json");
+                    if (InputDirOption.empty()){
+                        for(const auto& File : InputFiles){ // place at output dir specified
+                            StringRef filename = llvm::sys::path::filename(File);
+                            OutputFiles.emplace_back(OutputDirOption + filename.str() + ".json");
+                        }
+                    }
+                    else {
+                        for(const auto& File : InputFiles){ // place at output dir specified
+                            // TODO: copy structure if there are multiple -in flags
+                            StringRef filepath = StringRef(File).drop_front(InputDirOption.size());
+                            OutputFiles.emplace_back(OutputDirOption + filepath.str() + ".json");
+                        }
                     }
                 }
             }
@@ -297,20 +327,23 @@ int main(int argc, char** argv){
     for(const auto& InputFile : InputFiles){
         std::cout << InputFile << '\n';
         if(StringRef(InputFile).consume_back("/")){
-            std::cout << "Specified input dir, quitting.. \n";
+            std::cout << "Specified input dir, quitting..." << std::endl;
             exit(1);
         }
     }
+    std::cout << std::endl;
 
     // Depending on what stage is requested, emit features in parallel
     // or emit statistics sequentially
+
+    int return_code = 0;
     if(PipelineStage == emit_features){
-        ParallelEmitFeatures(InputFiles, OutputFiles, PipelineStage,
+        return_code = ParallelEmitFeatures(InputFiles, OutputFiles, PipelineStage,
             AnalysesOption, BuildPath, db, ParallelismOption);
     } else if(PipelineStage == emit_statistics){
-        return CXXLangstatMain(InputFiles, OutputFiles, PipelineStage,
+        return_code = CXXLangstatMain(InputFiles, OutputFiles, PipelineStage,
             AnalysesOption, BuildPath, db);
     }
-    std::cout << "cxx-langstat finished." << std::endl;
-    return 0;
+    std::cout << "cxx-langstat finished with return code " << return_code << "." << std::endl;
+    return return_code;
 }

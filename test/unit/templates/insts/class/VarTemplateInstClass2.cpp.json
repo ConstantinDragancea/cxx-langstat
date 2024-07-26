@@ -1,8 +1,9 @@
 {
     "tia": {
         "explicit class insts": null,
-        "implicit class insts": null,
-        "func insts": null,
+        "templated class uses": null,
+        "templated func uses": null,
+        "explicit func insts": null,
         "var insts": null
     }
 }

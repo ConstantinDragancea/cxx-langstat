@@ -1,69 +1,51 @@
 {
-    "ua": [
-        {
-            "kind": "Typedef",
-            "location": 16,
-            "templated": false
-        },
-        {
-            "kind": "Typedef",
-            "location": 49,
-            "templated": false
-        },
-        {
-            "kind": "Typedef",
-            "location": 56,
-            "templated": false
-        },
-        {
-            "kind": "Alias",
-            "location": 17,
-            "templated": false
-        },
-        {
-            "kind": "Typedef",
-            "location": 29,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 35,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 35,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 61,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 72,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 87,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 87,
-            "templated": true
-        },
-        {
-            "kind": "Typedef",
-            "location": 100,
-            "templated": true
-        },
-        {
-            "kind": "Alias",
-            "location": 107,
-            "templated": true
-        }
-    ]
+    "ua": {
+        "typedef": [
+            {
+                "Location": 17
+            },
+            {
+                "Location": 50
+            },
+            {
+                "Location": 57
+            }
+        ],
+        "using": [
+            {
+                "Location": 18
+            }
+        ],
+        "templated typedef": [
+            {
+                "Location": 30
+            },
+            {
+                "Location": 36
+            },
+            {
+                "Location": 36
+            },
+            {
+                "Location": 62
+            },
+            {
+                "Location": 73
+            },
+            {
+                "Location": 88
+            },
+            {
+                "Location": 88
+            },
+            {
+                "Location": 101
+            }
+        ],
+        "templated using": [
+            {
+                "Location": 108
+            }
+        ]
+    }
 }

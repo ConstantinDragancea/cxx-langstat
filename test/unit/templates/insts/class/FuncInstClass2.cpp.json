@@ -1,10 +1,10 @@
 {
     "tia": {
         "explicit class insts": null,
-        "implicit class insts": {
+        "templated class uses": {
             "Widget": [
                 {
-                    "location": 16,
+                    "Location": 17,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "location": 27,
+                    "Location": 28,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -24,7 +24,7 @@
                     }
                 },
                 {
-                    "location": 36,
+                    "Location": 37,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -35,10 +35,10 @@
                 }
             ]
         },
-        "func insts": {
+        "templated func uses": {
             "f": [
                 {
-                    "location": 19,
+                    "Location": 20,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -48,7 +48,7 @@
                     }
                 },
                 {
-                    "location": 20,
+                    "Location": 21,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -60,7 +60,7 @@
             ],
             "f2": [
                 {
-                    "location": 30,
+                    "Location": 31,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -72,7 +72,33 @@
             ],
             "f3": [
                 {
-                    "location": 40,
+                    "Location": 41,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "short"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        },
+        "explicit func insts": {
+            "f2": [
+                {
+                    "Location": 31,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "short"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "f3": [
+                {
+                    "Location": 39,
                     "arguments": {
                         "non-type": [],
                         "type": [

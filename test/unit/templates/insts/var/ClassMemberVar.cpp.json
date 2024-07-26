@@ -1,0 +1,56 @@
+{
+    "tia": {
+        "explicit class insts": null,
+        "implicit class insts": null,
+        "implicit func insts": null,
+        "explicit func insts": null,
+        "var insts": {
+            "Widget::data": [
+                {
+                    "location": 17,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "int"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "Widget2::data": [
+                {
+                    "location": 29,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "float"
+                        ],
+                        "template": []
+                    }
+                },
+                {
+                    "location": 29,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "float"
+                        ],
+                        "template": []
+                    }
+                }
+            ],
+            "Widget3::data": [
+                {
+                    "location": 41,
+                    "arguments": {
+                        "non-type": [],
+                        "type": [
+                            "float"
+                        ],
+                        "template": []
+                    }
+                }
+            ]
+        }
+    }
+}

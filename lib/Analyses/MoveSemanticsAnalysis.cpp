@@ -1,4 +1,5 @@
 #include "cxx-langstat/Analyses/MoveSemanticsAnalysis.h"
+#include "cxx-langstat/Stats.h"
 
 using namespace clang;
 using namespace clang::ast_matchers;
@@ -29,7 +30,7 @@ void from_json(const nlohmann::json& j, FunctionParamInfo& o){
     j.at("copy/move ctor is compiler-generated").get_to(o.CompilerGenerated);
     j.at("Parm Type").get_to(o.ParmType);
 }
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CallExprInfo, Location);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(CallExprInfo, Location, GlobalLocation);
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ConstructInfo, CallExpr, Parameter);
 
 
@@ -40,17 +41,56 @@ StdMoveStdForwardUsageAnalyzer() : TemplateInstantiationAnalysis(
     clang::ast_matchers::hasAnyName("std::move", "std::forward"),
     // libc++
     // https://github.com/llvm/llvm-project/blob/release/11.x/libcxx/include/type_traits#L2613
-    "type_traits|"
+    "type_traits$|"
     // libstdc++
     // https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-api-4.5/a00936.html
-    "bits/move.h"
+    "/bits/.*$"
+    // "bits/move\\.h$"
     ){
-        std::cout << "StdMoveStdForwardUsageAnalyzer\n";
+        std::cout << "StdMoveStdForwardUsageAnalyzer CTOR\n";
+}
+void MoveSemanticsAnalysis::StdMoveStdForwardUsageAnalyzer::analyzeFeatures(){
+    TemplateInstantiationAnalysis::analyzeFeatures();
+    if (Features.contains(ImplFuncKey) && Features[ImplFuncKey].contains("std::move")){
+        for (size_t idx = 0; idx < Features[ImplFuncKey]["std::move"].size(); ){
+            auto& instance = Features[ImplFuncKey]["std::move"][idx];
+            if (instance["arguments"]["type"].size() != 1){
+                // remove the element from the array
+                Features[ImplFuncKey]["std::move"].erase(idx);
+            }
+            else {
+                ++idx;
+            }
+        }
+    }
+    if (Features.contains(ExplFuncKey) && Features[ExplFuncKey].contains("std::move")){
+        for (size_t idx = 0; idx < Features[ExplFuncKey]["std::move"].size(); ){
+            auto& instance = Features[ExplFuncKey]["std::move"][idx];
+            if (instance["arguments"]["type"].size() != 1){
+                // remove the element from the array
+                Features[ExplFuncKey]["std::move"].erase(idx);
+            }
+            else {
+                ++idx;
+            }
+        }
+    }
 }
 void MoveSemanticsAnalysis::StdMoveStdForwardUsageAnalyzer::
-processFeatures(nlohmann::ordered_json j) {
-    if(j.contains(p1key) && j.at(p1key).contains(FuncKey)){
-        templatePrevalence(j.at(p1key).at(FuncKey), Statistics);
+processFeatures(const nlohmann::ordered_json& j) {
+    if(j.contains(MoveAndForwardUsageKey) && j.at(MoveAndForwardUsageKey).contains(ImplFuncKey)){
+        nlohmann::ordered_json res;
+        templatePrevalence(j.at(MoveAndForwardUsageKey).at(ImplFuncKey), res);
+        Statistics = res;
+
+        // templatePrevalence(j.at(MoveAndForwardUsageKey).at(ImplFuncKey), MoveSemanticsAnalysis::StdMoveStdForwardUsageAnalyzer::Statistics);
+    }
+    if(j.contains(MoveAndForwardUsageKey) && j.at(MoveAndForwardUsageKey).contains(ExplFuncKey)){
+        nlohmann::ordered_json res;
+        templatePrevalence(j.at(MoveAndForwardUsageKey).at(ExplFuncKey), res);
+        Statistics = add(std::move(Statistics), res);
+
+        // templatePrevalence(j.at(MoveAndForwardUsageKey).at(ExplFuncKey), MoveSemanticsAnalysis::StdMoveStdForwardUsageAnalyzer::Statistics);
     }
 }
 
@@ -59,7 +99,8 @@ processFeatures(nlohmann::ordered_json j) {
 void MoveSemanticsAnalysis::CopyOrMoveAnalyzer::analyzeFeatures() {
     // Gives us a triad of callexpr, a pass-by-value record type function
     // parameter and the expr that is the argument to that parameter.
-    auto m = callExpr(isExpansionInMainFile(),
+    // auto m = callExpr(isExpansionInMainFile(),
+    auto m = callExpr(unless(isExpansionInSystemHeader()),
         forEachArgumentWithParam(
             // Argument is something that has to be constructed
             expr(anyOf(
@@ -134,6 +175,7 @@ void MoveSemanticsAnalysis::CopyOrMoveAnalyzer::analyzeFeatures() {
         FPI.CompilerGenerated = Ctor->isImplicit();
         FPI.ParmType = p.Node->getType().getAsString(PP);
         CEI.Location = c.Location;
+        CEI.GlobalLocation = c.GlobalLocation;
         CI.Parameter = FPI;
         CI.CallExpr = CEI;
         nlohmann::json c_j = CI;
@@ -186,10 +228,10 @@ void CopyAndMoveCounts(const ojson& j, ojson& res){
     }
 }
 
-void MoveSemanticsAnalysis::CopyOrMoveAnalyzer::processFeatures(ojson j){
+void MoveSemanticsAnalysis::CopyOrMoveAnalyzer::processFeatures(const ojson& j){
     // std::cout << j.dump(4) << std::endl;
-    if(j.contains(p2key)){
-        CopyAndMoveCounts(j.at(p2key), Statistics);
+    if(j.contains(CopyOrMoveConstrKey)){
+        CopyAndMoveCounts(j.at(CopyOrMoveConstrKey), Statistics);
     }
     // std::cout << Statistics.dump(4) << std::endl;
 }

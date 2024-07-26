@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+#include "cxx-langstat/Analysis.h"
 #include "cxx-langstat/Analyses/VariableTemplateAnalysis.h"
 #include "cxx-langstat/Utils.h"
 
@@ -20,7 +21,9 @@ void VariableTemplateAnalysis::extractFeatures(){
     // Essentially the same matcher as for typedefs in UsingAnalysis.cpp,
     // but static vardecl instead of typedefs.
     DeclarationMatcher ClassWithStaticMember = classTemplateDecl(
-        isExpansionInMainFile(),
+        // isExpansionInMainFile(),
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()),
         has(cxxRecordDecl(
             // Must have static member
             forEach(varDecl(isStaticStorageClass()).bind("staticmember")),
@@ -37,7 +40,9 @@ void VariableTemplateAnalysis::extractFeatures(){
 
     // Second pre-C++14 idiom:
     DeclarationMatcher ConstexprFunction = functionTemplateDecl(
-        isExpansionInMainFile(),
+        // isExpansionInMainFile(),
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()),
         has(functionDecl(
             isConstexpr(),
             // does not have "void" return type
@@ -67,7 +72,9 @@ void VariableTemplateAnalysis::extractFeatures(){
     // https://clang.llvm.org/doxygen/ASTMatchersInternal_8cpp_source.html
     internal::VariadicDynCastAllOfMatcher<Decl, VarTemplateDecl> varTemplateDecl;
     DeclarationMatcher VariableTemplate = varTemplateDecl(
-        isExpansionInMainFile())
+        // isExpansionInMainFile())
+        isExpansionInHomeDirectory(),
+        unless(isExpansionInSystemHeader()))
     .bind("variabletemplate");
 
     auto ClassWithStaticMemberDecls = Extractor.extract(*Context,
@@ -136,7 +143,7 @@ void VariableTemplateAnalysis::analyzeFeatures(){
 void VariableFamilyKindPrevalence(ordered_json& Stats, const ordered_json& j){
     unsigned CTSDs = 0, CFTs = 0, VTs = 0;
     for(const auto& vf_j : j){
-        std::cout << vf_j.dump(4) << std::endl;
+        // std::cout << vf_j.dump(4) << std::endl;
         VariableFamily vf;
         from_json(vf_j, vf);
         switch(vf.Kind){
@@ -157,7 +164,7 @@ void VariableFamilyKindPrevalence(ordered_json& Stats, const ordered_json& j){
     Stats[desc]["variable template"] = VTs;
 }
 
-void VariableTemplateAnalysis::processFeatures(nlohmann::ordered_json j){
+void VariableTemplateAnalysis::processFeatures(const nlohmann::ordered_json& j){
     VariableFamilyKindPrevalence(Statistics, j);
 }
 

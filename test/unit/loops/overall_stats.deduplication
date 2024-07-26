@@ -1,0 +1,26 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/loops/Deduplication1.ast.json": {
+        "loop kind prevalences": {
+            "do-while": 2,
+            "for": 2,
+            "range-for": 2,
+            "while": 2
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/loops/Deduplication2.ast.json": {
+        "loop kind prevalences": {
+            "do-while": 2,
+            "for": 2,
+            "range-for": 2,
+            "while": 2
+        }
+    }
+}
+{
+    "loop kind prevalences": {
+        "do-while": 3,
+        "for": 3,
+        "range-for": 3,
+        "while": 3
+    }
+}

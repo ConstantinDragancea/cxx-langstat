@@ -3,7 +3,7 @@
         "explicit class insts": {
             "Super": [
                 {
-                    "location": 15,
+                    "Location": 16,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -13,7 +13,7 @@
                     }
                 },
                 {
-                    "location": 16,
+                    "Location": 17,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -24,10 +24,10 @@
                 }
             ]
         },
-        "implicit class insts": {
+        "templated class uses": {
             "Sub": [
                 {
-                    "location": 13,
+                    "Location": 14,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -37,7 +37,7 @@
                     }
                 },
                 {
-                    "location": 13,
+                    "Location": 14,
                     "arguments": {
                         "non-type": [],
                         "type": [
@@ -48,7 +48,8 @@
                 }
             ]
         },
-        "func insts": null,
+        "templated func uses": null,
+        "explicit func insts": null,
         "var insts": null
     }
 }

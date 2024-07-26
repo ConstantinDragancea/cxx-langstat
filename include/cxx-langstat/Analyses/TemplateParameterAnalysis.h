@@ -1,6 +1,8 @@
 #ifndef TEMPLATEPARAMETERANALYSIS_H
 #define TEMPLATEPARAMETERANALYSIS_H
 
+#include <string_view>
+
 #include "cxx-langstat/Analysis.h"
 
 //-----------------------------------------------------------------------------
@@ -13,7 +15,7 @@ public:
     ~TemplateParameterAnalysis(){
         std::cout << "TPA dtor\n";
     }
-    std::string getShorthand() override {
+    std::string_view getShorthand() override {
         return ShorthandName;
     }
 private:
@@ -21,7 +23,7 @@ private:
     void gatherData(const Matches<clang::Decl>& Matches,
         std::string TemplateKind);
     void analyzeFeatures() override;
-    void processFeatures(nlohmann::ordered_json j) override;
+    void processFeatures(const nlohmann::ordered_json& j) override;
     Matches<clang::Decl> ClassTemplates;
     Matches<clang::Decl> FunctionTemplates;
     Matches<clang::Decl> VariableTemplates;

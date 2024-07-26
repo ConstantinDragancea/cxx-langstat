@@ -3,6 +3,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include "cxx-langstat/Analysis.h"
 #include "cxx-langstat/Analyses/TemplateParameterAnalysis.h"
 #include "cxx-langstat/Utils.h"
 
@@ -31,22 +32,26 @@ void TemplateParameterAnalysis::extractFeatures(){
     internal::VariadicDynCastAllOfMatcher<Decl, VarTemplateDecl> varTemplateDecl;
 
     auto CTResults = Extractor.extract2(*Context,
-        classTemplateDecl(isExpansionInMainFile())
+        // classTemplateDecl(isExpansionInMainFile())
+        classTemplateDecl(isExpansionInHomeDirectory(), unless(isExpansionInSystemHeader()))
     .bind("ct"));
     ClassTemplates = getASTNodes<Decl>(CTResults, "ct");
 
     auto FTResults = Extractor.extract2(*Context,
-        functionTemplateDecl(isExpansionInMainFile())
+        // functionTemplateDecl(isExpansionInMainFile())
+        functionTemplateDecl(isExpansionInHomeDirectory(), unless(isExpansionInSystemHeader()))
     .bind("ft"));
     FunctionTemplates = getASTNodes<Decl>(FTResults, "ft");
 
     auto VTResults = Extractor.extract2(*Context,
-        varTemplateDecl(isExpansionInMainFile())
+        // varTemplateDecl(isExpansionInMainFile())
+        varTemplateDecl(isExpansionInHomeDirectory(), unless(isExpansionInSystemHeader()))
     .bind("vt"));
     VariableTemplates = getASTNodes<Decl>(VTResults, "vt");
 
     auto ATResults = Extractor.extract2(*Context,
-        typeAliasTemplateDecl(isExpansionInMainFile())
+        // typeAliasTemplateDecl(isExpansionInMainFile())
+        typeAliasTemplateDecl(isExpansionInHomeDirectory(), unless(isExpansionInSystemHeader()))
     .bind("at"));
     AliasTemplates = getASTNodes<Decl>(ATResults, "at");
 }
@@ -107,14 +112,14 @@ void TemplateParameterAnalysis::gatherData(const Matches<Decl>& Matches,
             else if(strcmp(kind, "TemplateTemplateParm") == 0)
                 Parms.Template++;
             else {
-                std::cout << "invalid template parameter kind!\n";
+                std::cout << "invalid template parameter kind!" << std::endl;
                 exit(1);
             }
         }
         assert(Parms.NumParms() != 0);
         Template.Parms = Parms;
         nlohmann::json JSONTemplate = Template;
-        Templates[match.getDeclName(PP)].emplace_back(JSONTemplate);
+        Templates[match.getTypeName(PP)].emplace_back(JSONTemplate);
     }
     Features[TemplateKind] = Templates;
 }
@@ -151,7 +156,7 @@ void useParamPacks(ordered_json& Stats, ordered_json j){
     }
 }
 
-void TemplateParameterAnalysis::processFeatures(nlohmann::ordered_json j){
+void TemplateParameterAnalysis::processFeatures(const nlohmann::ordered_json& j){
     useParamPacks(Statistics, j);
 
 }

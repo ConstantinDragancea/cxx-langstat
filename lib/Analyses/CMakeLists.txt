@@ -2,11 +2,14 @@ add_library(Analyses
     AlgorithmLibraryAnalysis.cpp
     ConstexprAnalysis.cpp
     ContainerLibAnalysis.cpp
+    ConcurrencyToolsAnalysis.cpp
     CyclomaticComplexityAnalysis.cpp
     FunctionParameterAnalysis.cpp
     LoopDepthAnalysis.cpp
     LoopKindAnalysis.cpp
+    ModernKeywordsAnalysis.cpp
     MoveSemanticsAnalysis.cpp
+    ObjectUsageAnalysis.cpp
     TemplateInstantiationAnalysis.cpp
     TemplateParameterAnalysis
     UsingAnalysis.cpp

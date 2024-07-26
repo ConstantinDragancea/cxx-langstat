@@ -1,10 +1,11 @@
-// RUN: rm %t1.ast.json || true
 // RUN: %clangxx %s -emit-ast -o %t1.ast
 // RUN: %cxx-langstat --analyses=ua -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %t1.ast.json
 // RUN: diff %t1.ast.json %s.json
+// RUN: rm %t1.ast.json || true
+
 // Tests that typedefs, aliases, especially "typedefs templates" and alias
 // templates are recognized by UA.
-//
 
 //-----------------------------------------------------------------------------
 // Typedef & alias

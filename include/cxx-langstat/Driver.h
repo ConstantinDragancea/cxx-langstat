@@ -1,3 +1,6 @@
+#ifndef DRIVER_H
+#define DRIVER_H
+
 #include "clang/Tooling/CompilationDatabase.h"
 
 #include "cxx-langstat/Options.h"
@@ -10,3 +13,5 @@ int CXXLangstatMain(std::vector<std::string> InputFiles,
     std::shared_ptr<clang::tooling::CompilationDatabase> db);
 
 //-----------------------------------------------------------------------------
+
+#endif // DRIVER_H
