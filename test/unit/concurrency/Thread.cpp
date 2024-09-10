@@ -1,5 +1,5 @@
 // RUN: %clangxx %s -emit-ast -o %t1.ast
-// RUN: %cxx-langstat --analyses=cta -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: %cxx-langstat --analyses=cta -emit-features -in %t1.ast -out %S/a.ast.json --
 // RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %t1.ast.json
 // RUN: diff %t1.ast.json %s.json
 // RUN: rm %t1.ast.json || true
@@ -8,6 +8,13 @@
 #include <utility>
 
 using mythread = std::thread;
+
+void funccccc(const std::thread* const * const * const * const x){
+
+}
+void funccccc2(const std::thread* const * const * const & x){
+
+}
 
 struct Base {
     static std::thread static_member_thread;

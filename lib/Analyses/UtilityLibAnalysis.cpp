@@ -37,7 +37,7 @@ UtilityLibAnalysis::UtilityLibAnalysis() : TemplateInstantiationAnalysis(
     // unique_ptr \in <bits/unique_ptr.h>
     // shared_ptr, weak_ptr \in <bits/shared_ptr.h>
     // "bits/utility\\.h$|bits/stl_iterator\\.h$|"
-    // "bits/stl_pair\\.h$|bits/unique_ptr\\.h$|bits/shared_ptr\\.h$"
+    // "bits/stl_pair\\.h$|bits/unique_ptr\\.h$|bits/shared_ptr\\.h$"){
     "/bits/.*$"){
     std::cout << "ULA ctor\n";
 }

@@ -1,5 +1,5 @@
 // RUN: %clangxx %s -emit-ast -o %t1.ast
-// RUN: %cxx-langstat --analyses=ala -emit-features -in %t1.ast -out %t1.ast.json --
+// RUN: %cxx-langstat --analyses=ala -emit-features -in %t1.ast -out %S/a.ast.json --
 // RUN: sed -i '/^[[:space:]]*"GlobalLocation/d' %t1.ast.json
 // RUN: diff %t1.ast.json %s.json
 // RUN: rm %t1.ast.json || true
@@ -41,8 +41,10 @@ int main(int argc, char** argv){
     sort(v2.begin(), v2.end());
 
     // still implicit instantiation
-    using my_sort = decltype(std::sort<__gnu_cxx::__normal_iterator<short *, std::vector<short, std::allocator<short> > >>);
-    auto f = std::sort<__gnu_cxx::__normal_iterator<double *, std::vector<double, std::allocator<double> > >>;
+    using my_swap = decltype((void(*)(int&, int&))std::swap<int>);
+    auto f = (void(*)(double&, double&)) std::swap<double>;
+    // using my_sort = decltype(std::sort<__gnu_cxx::__normal_iterator<short *, std::vector<short, std::allocator<short> > >>);
+    // auto f = std::sort<__gnu_cxx::__normal_iterator<double *, std::vector<double, std::allocator<double> > >>;
 
     return std::move(a);
 }

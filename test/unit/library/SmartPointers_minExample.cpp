@@ -9,7 +9,7 @@
 
 int main(int argc, char** argv){
     std::shared_ptr<int> sp(new int(3));
-    std::weak_ptr<int> wp;
+    std::weak_ptr<double> wp;
     return 0;
 }
 

@@ -68,20 +68,34 @@ bool isSourceLocationInFileMatching(const clang::SourceLocation& Loc,
 
 }
 
-clang::ast_matchers::TypeMatcher recursiveTypeMatcher(clang::ast_matchers::TypeMatcher type_matcher, int levels){
+clang::ast_matchers::TypeMatcher recursiveTypeMatcher_internal(clang::ast_matchers::TypeMatcher type_matcher, int levels, bool first_call = false){
     using namespace clang;
     using namespace clang::ast_matchers;
 
     if (levels == 0) {
         return type_matcher;
     }
-    return anyOf(
-        type_matcher,
-        references(type_matcher),
-        references(recursiveTypeMatcher(type_matcher, levels - 1)),
-        pointsTo(type_matcher),
-        pointsTo(recursiveTypeMatcher(type_matcher, levels - 1))
-    );
+
+    if (first_call){
+        return anyOf(
+            type_matcher,
+            references(type_matcher),
+            references(recursiveTypeMatcher_internal(type_matcher, levels - 1, false)),
+            pointsTo(type_matcher),
+            pointsTo(recursiveTypeMatcher_internal(type_matcher, levels - 1, false))
+        );
+    }
+    else {
+        return anyOf(
+            type_matcher,
+            pointsTo(type_matcher),
+            pointsTo(recursiveTypeMatcher_internal(type_matcher, levels - 1, false))
+        );
+    }
+}
+
+clang::ast_matchers::TypeMatcher recursiveTypeMatcher(clang::ast_matchers::TypeMatcher type_matcher, int levels){
+    return recursiveTypeMatcher_internal(type_matcher, levels, true);
 }
 
 clang::QualType removePointersAndReference(const clang::QualType& QT){

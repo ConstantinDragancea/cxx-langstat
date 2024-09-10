@@ -218,11 +218,12 @@ void TemplateInstantiationAnalysis::extractFeatures() {
         // and making sure that it is in a user source file.
         auto ExplFuncInstMatcher = functionDecl(
             Names,
-            // isTemplateInstantiation(),
-            anyOf(
-                isTemplateInstantiation(),
-                isExplicitTemplateSpecialization()
-            )
+            isTemplateInstantiation(),
+            // not using the one below because a specialization is not an instantiation
+            // anyOf(
+            //     isTemplateInstantiation(),
+            //     isExplicitTemplateSpecialization()
+            // )
             // isExpansionInFileMatching(HeaderRegex)
         ).bind("ExplicitFuncInsts");
         

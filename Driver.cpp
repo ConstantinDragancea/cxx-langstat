@@ -35,6 +35,7 @@
 #include <iostream> // should be removed
 #include <fstream> // file stream
 #include <cstdlib> // setenv
+#include <string>
 // JSON library
 #include <nlohmann/json.hpp>
 //
@@ -53,6 +54,16 @@ using ASTContext = clang::ASTContext;
 using ordered_json = nlohmann::ordered_json;
 
 //-----------------------------------------------------------------------------
+class CustomDiagnosticConsumer : public clang::DiagnosticConsumer {
+public:
+    void HandleDiagnostic(clang::DiagnosticsEngine::Level DiagLevel,
+                          const clang::Diagnostic &Info) override {
+        llvm::SmallString<200> OutStr;
+        Info.FormatDiagnostic(OutStr);
+        std::cout << "Diagnostic message: " << static_cast<std::string>(OutStr) << std::endl;
+    }
+};
+
 // Consumes the AST, i.e. does computations on it
 class Consumer : public ASTConsumer {
 public:
@@ -241,11 +252,19 @@ int CXXLangstatMain(std::vector<std::string> InputFiles,
 
                     clang::CompilerInstance CI;
                     CI.createDiagnostics();
+                    // auto diagConsumer = new CustomDiagnosticConsumer();
+                    // CI.createDiagnostics(diagConsumer, false);
+                    // Create diagnostics engine
+                    // IntrusiveRefCntPtr<DiagnosticOptions> DiagOpts = new DiagnosticOptions();
+                    // TextDiagnosticPrinter *DiagClient = new TextDiagnosticPrinter(llvm::errs(), &*DiagOpts);
+                    // IntrusiveRefCntPtr<DiagnosticIDs> DiagID(new DiagnosticIDs());
+                    // IntrusiveRefCntPtr<DiagnosticsEngine> Diags = new DiagnosticsEngine(DiagID, &*DiagOpts, DiagClient);
+                    // CI.setDiagnostics(&*Diags);
+
                     std::shared_ptr<clang::TargetOptions> TO = std::make_shared<clang::TargetOptions>();
                     // TO->Triple = "x86_64-pc-win32"; // see clang -v
                     TO->Triple = llvm::sys::getDefaultTargetTriple();
                     CI.setTarget(clang::TargetInfo::CreateTargetInfo(CI.getDiagnostics(), TO));
-
 
                     std::shared_ptr<ASTUnit> AST = ASTUnit::LoadFromASTFile(
                         FilePath, //const std::string &Filename, 
@@ -262,7 +281,8 @@ int CXXLangstatMain(std::vector<std::string> InputFiles,
                     );
 
                     if (!AST) {
-                        std::cout << "Failed to load AST file: " << FilePath << std::endl;
+                        std::cout << "Failed to load AST file: " << FilePath << ". Probably due to a missing header." << std::endl;
+
                         return 1;
                     }
 

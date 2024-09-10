@@ -1,0 +1,125 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/concurrency/Deduplication1.ast.json": {
+        "promise, future usage": {
+            "tia explicit class insts": {},
+            "tia templated class uses": {
+                "std::future": 2,
+                "std::promise": 2
+            }
+        },
+        "async usage": {
+            "tia templated func uses": {},
+            "tia explicit func insts": {}
+        },
+        "atomic usage": {
+            "tia explicit class insts": {},
+            "tia templated class uses": {
+                "std::atomic": 3
+            }
+        },
+        "thread usage": {
+            "as variable declarations": 1,
+            "total count": 1,
+            "as function return types": 0,
+            "as temporary expressions": 0,
+            "as new pointer expressions": 0
+        },
+        "mutex usage": {
+            "as variable declarations": 1,
+            "total count": 1,
+            "as function return types": 0,
+            "as temporary expressions": 0,
+            "as new pointer expressions": 0
+        },
+        "test usage": {
+            "tia explicit class insts": {},
+            "tia templated class uses": {
+                "std::atomic": 3,
+                "std::future": 2,
+                "std::promise": 2
+            }
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/concurrency/Deduplication2.ast.json": {
+        "promise, future usage": {
+            "tia explicit class insts": {},
+            "tia templated class uses": {
+                "std::future": 2,
+                "std::promise": 2
+            }
+        },
+        "async usage": {
+            "tia templated func uses": {},
+            "tia explicit func insts": {}
+        },
+        "atomic usage": {
+            "tia explicit class insts": {},
+            "tia templated class uses": {
+                "std::atomic": 3
+            }
+        },
+        "thread usage": {
+            "as variable declarations": 1,
+            "total count": 1,
+            "as function return types": 0,
+            "as temporary expressions": 0,
+            "as new pointer expressions": 0
+        },
+        "mutex usage": {
+            "as variable declarations": 1,
+            "total count": 1,
+            "as function return types": 0,
+            "as temporary expressions": 0,
+            "as new pointer expressions": 0
+        },
+        "test usage": {
+            "tia explicit class insts": {},
+            "tia templated class uses": {
+                "std::atomic": 3,
+                "std::future": 2,
+                "std::promise": 2
+            }
+        }
+    }
+}
+{
+    "promise, future usage": {
+        "tia explicit class insts": {},
+        "tia templated class uses": {
+            "std::future": 3,
+            "std::promise": 3
+        }
+    },
+    "async usage": {
+        "tia templated func uses": {},
+        "tia explicit func insts": {}
+    },
+    "atomic usage": {
+        "tia explicit class insts": {},
+        "tia templated class uses": {
+            "std::atomic": 4
+        }
+    },
+    "thread usage": {
+        "as variable declarations": 2,
+        "total count": 2,
+        "as function return types": 0,
+        "as temporary expressions": 0,
+        "as new pointer expressions": 0
+    },
+    "mutex usage": {
+        "as variable declarations": 2,
+        "total count": 2,
+        "as function return types": 0,
+        "as temporary expressions": 0,
+        "as new pointer expressions": 0
+    },
+    "test usage": {
+        "tia explicit class insts": {},
+        "tia templated class uses": {
+            "std::atomic": 4,
+            "std::future": 3,
+            "std::promise": 3
+        }
+    }
+}
