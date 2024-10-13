@@ -73,16 +73,16 @@ ConcurrencyToolsAnalysis::MutexAnalyzer::MutexAnalyzer(): ObjectUsageAnalysis(
     std::cout << "CTA::MutexAnalyzer ctor\n";
 }
 
-ConcurrencyToolsAnalysis::TestAnalyzer::TestAnalyzer():
-    TemplateInstantiationAnalysis(
-        TemplateInstantiationAnalysis::InstKind::Class,
-        // hasAnyName("my_namespace::my_class"),
-        anything(),
-        // "header.hpp$"
-        ".*"
-    ){
-    std::cout << "CTA::TestAnalyzer ctor\n";
-}
+// ConcurrencyToolsAnalysis::TestAnalyzer::TestAnalyzer():
+//     TemplateInstantiationAnalysis(
+//         TemplateInstantiationAnalysis::InstKind::Class,
+//         // hasAnyName("my_namespace::my_class"),
+//         anything(),
+//         // "header.hpp$"
+//         ".*"
+//     ){
+//     std::cout << "CTA::TestAnalyzer ctor\n";
+// }
 
 void ConcurrencyToolsAnalysis::analyzeFeatures() {
     for (const auto& key : ConcurrencyToolsAnalysis::getFeatureKeys()) {

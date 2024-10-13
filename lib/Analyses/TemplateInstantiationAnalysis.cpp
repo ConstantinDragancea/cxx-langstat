@@ -136,6 +136,7 @@ void TemplateInstantiationAnalysis::extractFeatures() {
             ).bind("explicit-CTSD")
         ));
 
+        // detecting expressions and new-expressions
         auto TemplatedClassUsesMatcher_expr = expr(
             anyOf(cxxTemporaryObjectExpr(), cxxNewExpr()),
             type_matcher,
@@ -197,7 +198,7 @@ void TemplateInstantiationAnalysis::extractFeatures() {
                     allOf(
                         isExplicitTemplateSpecialization(), //explicit specialization show up as in user file
                         anyOf(
-                            allOf(isExpansionInSystemHeader(), isExpansionInFileMatching(HeaderRegex)),
+                            isExpansionInFileMatching(HeaderRegex),
                             allOf(unless(isExpansionInSystemHeader()), isExpansionInMainFile())
                         )
                     )
@@ -218,7 +219,7 @@ void TemplateInstantiationAnalysis::extractFeatures() {
         // and making sure that it is in a user source file.
         auto ExplFuncInstMatcher = functionDecl(
             Names,
-            isTemplateInstantiation(),
+            isTemplateInstantiation()
             // not using the one below because a specialization is not an instantiation
             // anyOf(
             //     isTemplateInstantiation(),
@@ -582,7 +583,7 @@ void TemplateInstantiationAnalysis::gatherInstantiationData(Matches<T>& Insts,
             const auto [location, global_location] = getInstantiationLocation(match, AreImplicit);
 
             instance["Location"] = location;
-            instance["GlobalLocation"] = *global_location;
+            instance["GlobalLocation"] = normalizeGlobalLocation(*global_location);
 
             for(auto key : ArgKinds){
                 auto range = TArgs.equal_range(key);

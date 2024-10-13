@@ -358,6 +358,47 @@ void ModernKeywordsAnalysis::extractFeatures(){
     for (auto& it : static_asserts_nodes){
         StaticAsserts.emplace_back(MKInfo(it.Location, it.Node->getLocation().printToString(SM)));
     }
+
+    // normalize all GlobalLocation
+    for (auto& it : AlignAs){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : AlignOf){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : AllDefault){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : ExplicitDefault){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : Deleted){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : InlineNamespace){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : Final){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : ExplicitNoexcept){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : AllNoexcept){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : Nullptr){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : ThreadLocal){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : Override){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
+    for (auto& it : StaticAsserts){
+        it.GlobalLocation = normalizeGlobalLocation(it.GlobalLocation);
+    }
 }
 
 template<typename T>

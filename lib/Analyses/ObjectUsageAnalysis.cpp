@@ -66,7 +66,7 @@ void ObjectUsageAnalysis::analyzeFeatures() {
 
         Features[VarDeclFeatureKey][object_name].push_back({
             {"Location", it.Location},
-            {"GlobalLocation", *it.GlobalLocation}
+            {"GlobalLocation", normalizeGlobalLocation(*it.GlobalLocation)}
         });
     }
     
@@ -89,7 +89,7 @@ void ObjectUsageAnalysis::analyzeFeatures() {
 
         Features[FuncRetTypeFeatureKey][object_name].push_back({
             {"Location", it.Location},
-            {"GlobalLocation", *it.GlobalLocation}
+            {"GlobalLocation", normalizeGlobalLocation(*it.GlobalLocation)}
         });
     }
     
@@ -111,7 +111,7 @@ void ObjectUsageAnalysis::analyzeFeatures() {
 
         Features[TemporaryExpressionsFeatureKey][object_name].push_back({
             {"Location", it.Location},
-            {"GlobalLocation", *it.GlobalLocation}
+            {"GlobalLocation", normalizeGlobalLocation(*it.GlobalLocation)}
         });
     }
 
@@ -133,7 +133,7 @@ void ObjectUsageAnalysis::analyzeFeatures() {
 
         Features[NewPointerExprFeatureKey][object_name].push_back({
             {"Location", it.Location},
-            {"GlobalLocation", *it.GlobalLocation}
+            {"GlobalLocation", normalizeGlobalLocation(*it.GlobalLocation)}
         });
     }
 }

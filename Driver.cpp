@@ -282,8 +282,10 @@ int CXXLangstatMain(std::vector<std::string> InputFiles,
 
                     if (!AST) {
                         std::cout << "Failed to load AST file: " << FilePath << ". Probably due to a missing header." << std::endl;
+                        // return 1;
 
-                        return 1;
+                        // continue analyzing other ASTs in this input list
+                        continue;
                     }
 
                     // Create a CompilerInstance
@@ -303,13 +305,20 @@ int CXXLangstatMain(std::vector<std::string> InputFiles,
                     llvm::Error err = LangstatAction.Execute();
                     if (err) {
                         std::cout << "Error processing AST file: " << FilePath << "\n";
-                        return 1;
+                        // return 1;
+                        
+                        // continue analyzing other ASTs in this input list
+                        continue;
                     }
 
                     LangstatAction.EndSourceFile();
                 } else {
                     std::cout << "Not implemented non-ast files yet" << std::endl;
-                    return 1;
+                    // return 1;
+
+                    // continue analyzing other ASTs in this input list
+                    continue;
+
                     // Handle source file (normal compilation process)
                     // llvm::errs() << "Processing source file: " << FilePath << "\n";
 

@@ -1,0 +1,191 @@
+{
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/keywords/Deduplication1.ast.json": {
+        "modern keywords prevalence": {
+            "alignas": {
+                "total count": 0,
+                "values to count": {}
+            },
+            "alignof": {
+                "total count": 0,
+                "values to count": {}
+            },
+            "all default": {
+                "total count": 10,
+                "all default constructors": 1,
+                "all default member functions": 9,
+                "all default functions": 0
+            },
+            "explicit default": {
+                "total count": 1,
+                "explicit default constructors": 1,
+                "explicit default member functions": 0,
+                "explicit default functions": 0
+            },
+            "delete": {
+                "total count": 0,
+                "delete constructors": 0,
+                "delete member functions": 0,
+                "delete functions": 0
+            },
+            "final": {
+                "total count": 1,
+                "final methods": 0,
+                "final classes": 1
+            },
+            "inline namespace": {
+                "total count": 0
+            },
+            "all noexcept": {
+                "total count": 11,
+                "specifier": 11,
+                "operator": 0
+            },
+            "explicit noexcept": {
+                "total count": 2,
+                "specifier": 2,
+                "operator": 0
+            },
+            "nullptr": {
+                "total count": 0
+            },
+            "thread_local": {
+                "total count": 0,
+                "data types": {}
+            },
+            "override": {
+                "contain override keyword": 2,
+                "total count": 2,
+                "number of functions that override": 2
+            },
+            "static_assert": {
+                "total count": 0
+            }
+        }
+    },
+    "/home/cdragancea/MastersThesis/cxx-langstat/test/unit/keywords/Deduplication2.ast.json": {
+        "modern keywords prevalence": {
+            "alignas": {
+                "total count": 0,
+                "values to count": {}
+            },
+            "alignof": {
+                "total count": 0,
+                "values to count": {}
+            },
+            "all default": {
+                "total count": 7,
+                "all default constructors": 1,
+                "all default member functions": 6,
+                "all default functions": 0
+            },
+            "explicit default": {
+                "total count": 1,
+                "explicit default constructors": 1,
+                "explicit default member functions": 0,
+                "explicit default functions": 0
+            },
+            "delete": {
+                "total count": 0,
+                "delete constructors": 0,
+                "delete member functions": 0,
+                "delete functions": 0
+            },
+            "final": {
+                "total count": 1,
+                "final methods": 0,
+                "final classes": 1
+            },
+            "inline namespace": {
+                "total count": 0
+            },
+            "all noexcept": {
+                "total count": 8,
+                "specifier": 8,
+                "operator": 0
+            },
+            "explicit noexcept": {
+                "total count": 2,
+                "specifier": 2,
+                "operator": 0
+            },
+            "nullptr": {
+                "total count": 0
+            },
+            "thread_local": {
+                "total count": 0,
+                "data types": {}
+            },
+            "override": {
+                "contain override keyword": 1,
+                "total count": 1,
+                "number of functions that override": 1
+            },
+            "static_assert": {
+                "total count": 0
+            }
+        }
+    }
+}
+{
+    "modern keywords prevalence": {
+        "alignas": {
+            "total count": 0,
+            "values to count": {}
+        },
+        "alignof": {
+            "total count": 0,
+            "values to count": {}
+        },
+        "all default": {
+            "total count": 10,
+            "all default constructors": 1,
+            "all default member functions": 9,
+            "all default functions": 0
+        },
+        "explicit default": {
+            "total count": 1,
+            "explicit default constructors": 1,
+            "explicit default member functions": 0,
+            "explicit default functions": 0
+        },
+        "delete": {
+            "total count": 0,
+            "delete constructors": 0,
+            "delete member functions": 0,
+            "delete functions": 0
+        },
+        "final": {
+            "total count": 1,
+            "final methods": 0,
+            "final classes": 1
+        },
+        "inline namespace": {
+            "total count": 0
+        },
+        "all noexcept": {
+            "total count": 12,
+            "specifier": 12,
+            "operator": 0
+        },
+        "explicit noexcept": {
+            "total count": 3,
+            "specifier": 3,
+            "operator": 0
+        },
+        "nullptr": {
+            "total count": 0
+        },
+        "thread_local": {
+            "total count": 0,
+            "data types": {}
+        },
+        "override": {
+            "contain override keyword": 2,
+            "total count": 2,
+            "number of functions that override": 2
+        },
+        "static_assert": {
+            "total count": 0
+        }
+    }
+}

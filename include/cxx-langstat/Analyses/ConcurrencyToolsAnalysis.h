@@ -71,14 +71,14 @@ protected:
         static constexpr auto ShorthandName = "cta::mutex_analyzer";
     };
 
-    class TestAnalyzer : public TemplateInstantiationAnalysis {
-    public:
-        TestAnalyzer();
-        ~TestAnalyzer(){
-            std::cout << "CTA::TestAnalyzer dtor\n";
-        }
-        static constexpr auto ShorthandName = "cta::test_analyzer";
-    };
+    // class TestAnalyzer : public TemplateInstantiationAnalysis {
+    // public:
+    //     TestAnalyzer();
+    //     ~TestAnalyzer(){
+    //         std::cout << "CTA::TestAnalyzer dtor\n";
+    //     }
+    //     static constexpr auto ShorthandName = "cta::test_analyzer";
+    // };
 
     void analyzeFeatures() override;
     void processFeatures(const nlohmann::ordered_json& j) override;
@@ -89,7 +89,7 @@ protected:
     AtomicAnalyzer atomicAnalyzer;
     ThreadAnalyzer threadAnalyzer;
     MutexAnalyzer mutexAnalyzer;
-    TestAnalyzer testAnalyzer;
+    // TestAnalyzer testAnalyzer;
 
     // JSON keys
     static constexpr auto ConcurrencyToolsStatisticsKey = "concurrency tools usage";
@@ -103,8 +103,8 @@ protected:
     //
     static constexpr auto ShorthandName = "cta";
 public:
-    static constexpr std::array<decltype(PromiseFutureFeatureKey), 6> getFeatureKeys() {
-        return {PromiseFutureFeatureKey, AsyncFeatureKey, AtomicFeatureKey, ThreadFeatureKey, MutexFeatureKey, TestFeatureKey};
+    static constexpr std::array<decltype(PromiseFutureFeatureKey), 5> getFeatureKeys() {
+        return {PromiseFutureFeatureKey, AsyncFeatureKey, AtomicFeatureKey, ThreadFeatureKey, MutexFeatureKey};
     }
 
     const std::unordered_map<std::string, Analysis*> m_analyzerMap = {
@@ -112,8 +112,8 @@ public:
         {AsyncFeatureKey, &asyncAnalyzer},
         {AtomicFeatureKey, &atomicAnalyzer},
         {ThreadFeatureKey, &threadAnalyzer},
-        {MutexFeatureKey, &mutexAnalyzer},
-        {TestFeatureKey, &testAnalyzer}
+        {MutexFeatureKey, &mutexAnalyzer}
+        // {TestFeatureKey, &testAnalyzer}
     };
 };
 
